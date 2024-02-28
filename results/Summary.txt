@@ -1,0 +1,15 @@
+2024-02-28 Jupyter Fibonacci
+
+DeepSeek Coder 6.7b - Correct
+Phind-CodeLlama34b - Correct
+Llama2 13b Chat - Correct
+Llama2 7b Chat - Fail - Created code that required "fibonacci" library to be installed and gave instructions on how to install. Tried it and the library and code didn't work, returned 0
+Mistral 7b 0.2 Instruct - Correct
+Mixtral 8x7b Q4 - Correct
+Mixtral 8x7b Q5 - Correct (a bit tidier than Q4)
+Neural Chat 7b Chat - Correct (and fast)
+Orca2 13b - Failed (twice)
+Phi-2 - Failed (created correct function but put 13 as parameter instead of 14, and started providing code for other things)
+Qwen 14b - Correct
+Solar 10.7b Instruct - Failed (function not right)
+Yi-34b Chat - Correct
