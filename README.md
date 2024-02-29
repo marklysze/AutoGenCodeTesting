@@ -10,6 +10,7 @@ Testing so far...
 [Basis for testing code here](https://github.com/microsoft/autogen/blob/tutorial/website/docs/getting-started/code-executors.ipynb)
 
 #### Fibonacci
+[More detail here](results/2024-02-08%20Jupyter%20Fibonacci%20Summary.txt) and see [results](results) folder for code outputs.
 **Model** | **Success** | **Notes**
 ---|---|---|
 DeepSeek Coder 6.7b| :white_check_mark:|
