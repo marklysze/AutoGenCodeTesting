@@ -1,0 +1,16 @@
+2024-02-29 Jupyter Stocks
+
+DeepSeek Coder 6.7b
+Llama2 13b Chat
+Llama2 7b Chat
+Mistral 7b 0.2 Instruct
+Mixtral 8x7b Q4
+Mixtral 8x7b Q5
+Neural Chat 7b Chat - Valid code but did not ```pip install``` libraries
+Nexus Raven
+Orca2 13b
+Phi-2
+Phind-CodeLlama34b
+Qwen 14b
+Solar 10.7b Instruct
+Yi-34b Chat

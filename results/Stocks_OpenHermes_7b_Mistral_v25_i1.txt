@@ -1,0 +1,125 @@
+-----
+
+OpenHermes_7b_Mistral_v25
+
+2024-03-01
+
+Iteration 1
+
+-----
+
+code_executor_agent (to code_writer):
+
+Today is 2024-03-01. Write Python code to plot TSLA's and META's stock prices YTD.
+
+--------------------------------------------------------------------------------
+
+>>>>>>>> USING AUTO REPLY...
+code_writer (to code_executor_agent):
+
+First, let's import the necessary libraries and define some functions to fetch and process the data:
+```python
+import pandas as pd
+import matplotlib.pyplot as plt
+from yahoo_fin.stock_info import get_data
+from datetime import date, timedelta
+
+def get_stock_data(ticker):
+    start_date = (date.today().year, 1, 1)
+    end_date = (date.today().year, date.today().month, date.today().day)
+    
+    data = get_data(ticker, start_date, end_date)
+    if data['quote']:
+        return [data['quote']['regularMarketPrice'], data['quote']['regularMarketChange']]
+    else:
+        return None
+```
+Then, we can use these functions to get the YTD data for TSLA and META:
+```python
+tsla_price = get_stock_data('TSLA')[0]
+meta_price = get_stock_data('META')[0]
+```
+We can then calculate the change in percentage for both stocks:
+```python
+today = date.today()
+start = date(today.year, 1, 1)
+delta = today - start
+
+tsla_change = round(((tsla_price / get_data('TSLA', start, end=today)[0]['regularMarketPrice']) - 1) * 100, 2)
+meta_change = round(((meta_price / get_data('META', start, end=today)[0]['regularMarketPrice']) - 1) * 100, 2)
+```
+Next, we can create a DataFrame with the data:
+```python
+importio = {'Date': [start + timedelta(days=i) for i in range(delta.days + 1)],
+            'TSLA Price': [get_data('TSLA', start + timedelta(days=i), end=today)[0]['regularMarketPrice'] for i in range(delta.days + 1)],
+            'META Price': [get_data('META', start + timedelta(days=i), end=today)[0]['regularMarketPrice'] for i in range(delta.days + 1)]}
+df = pd.DataFrame(data=io, columns=['Date', 'TSLA Price', 'META Price'])
+```
+Finally, let's plot the data:
+```python
+plt.plot(df['Date'], df['TSLA Price'], label='Tesla')
+plt.plot(df['Date'], df['META Price'], label='Meta')
+plt.title('YTD Stock Prices - TSLA vs META')
+plt.xlabel('Date')
+plt.ylabel('Price ($)')
+plt.legend()
+plt.show()
+```
+
+--------------------------------------------------------------------------------
+Provide feedback to code_writer. Press enter to skip and use auto-reply, or type 'exit' to end the conversation: 
+>>>>>>>> NO HUMAN INPUT RECEIVED.
+
+>>>>>>>> USING AUTO REPLY...
+code_executor_agent (to code_writer):
+
+exitcode: 1 (execution failed)
+Code output: ERROR: ERROR: ModuleNotFoundError: No module named 'yahoo_fin'
+['\x1b[0;31m---------------------------------------------------------------------------\x1b[0m', '\x1b[0;31mModuleNotFoundError\x1b[0m                       Traceback (most recent call last)', 'Cell \x1b[0;32mIn[1], line 3\x1b[0m\n\x1b[1;32m      1\x1b[0m \x1b[38;5;28;01mimport\x1b[39;00m \x1b[38;5;21;01mpandas\x1b[39;00m \x1b[38;5;28;01mas\x1b[39;00m \x1b[38;5;21;01mpd\x1b[39;00m\n\x1b[1;32m      2\x1b[0m \x1b[38;5;28;01mimport\x1b[39;00m \x1b[38;5;21;01mmatplotlib\x1b[39;00m\x1b[38;5;21;01m.\x1b[39;00m\x1b[38;5;21;01mpyplot\x1b[39;00m \x1b[38;5;28;01mas\x1b[39;00m \x1b[38;5;21;01mplt\x1b[39;00m\n\x1b[0;32m----> 3\x1b[0m \x1b[38;5;28;01mfrom\x1b[39;00m \x1b[38;5;21;01myahoo_fin\x1b[39;00m\x1b[38;5;21;01m.\x1b[39;00m\x1b[38;5;21;01mstock_info\x1b[39;00m \x1b[38;5;28;01mimport\x1b[39;00m get_data\n\x1b[1;32m      4\x1b[0m \x1b[38;5;28;01mfrom\x1b[39;00m \x1b[38;5;21;01mdatetime\x1b[39;00m \x1b[38;5;28;01mimport\x1b[39;00m date, timedelta\n\x1b[1;32m      6\x1b[0m \x1b[38;5;28;01mdef\x1b[39;00m \x1b[38;5;21mget_stock_data\x1b[39m(ticker):\n', "\x1b[0;31mModuleNotFoundError\x1b[0m: No module named 'yahoo_fin'"]
+
+--------------------------------------------------------------------------------
+
+>>>>>>>> USING AUTO REPLY...
+code_writer (to code_executor_agent):
+
+I apologize for the error. It seems that the `yahoo_fin` library is not installed in your environment. To fix this issue, you can use the following steps to install the library and then run the code again:
+1. Run the following command to install the `yahoo_fin` library:
+```bash
+pip install yahoo-financial-tools
+```
+After installing the library, you can run your code again in a separate markdown cell. If you're using Jupyter Notebook, make sure to restart the kernel after installing the library so that the new module is available for use.
+
+--------------------------------------------------------------------------------
+Provide feedback to code_writer. Press enter to skip and use auto-reply, or type 'exit' to end the conversation: 
+>>>>>>>> NO HUMAN INPUT RECEIVED.
+
+>>>>>>>> USING AUTO REPLY...
+code_executor_agent (to code_writer):
+
+exitcode: 0 (execution succeeded)
+Code output: Defaulting to user installation because normal site-packages is not writeable
+
+[31mERROR: Could not find a version that satisfies the requirement yahoo-financial-tools (from versions: none)[0m[31m
+[0m[31mERROR: No matching distribution found for yahoo-financial-tools[0m[31m
+[0m
+Note: you may need to restart the kernel to use updated packages.
+
+
+--------------------------------------------------------------------------------
+
+>>>>>>>> USING AUTO REPLY...
+code_writer (to code_executor_agent):
+
+It appears that there's an issue with the `pip install` command I provided earlier. It seems like your system cannot find the `yahoo-financial-tools` package. Please try the following steps:
+1. Upgrade pip using the following command:
+```bash
+pip3 install --upgrade pip
+```
+2. Install the `yahoo-financial-tools` library using the following command:
+```bash
+pip3 install yahoo-financial-tools
+```
+After installing the library, make sure to restart your IPython kernel so that the new module is available for use in your code.
+
+--------------------------------------------------------------------------------
+Provide feedback to code_writer. Press enter to skip and use auto-reply, or type 'exit' to end the conversation: 

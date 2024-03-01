@@ -1,4 +1,4 @@
-# Testing the Code Executor - Local Jupyter - Local LLM
+# Testing the Code Executor - Local Jupyter - Local LLM - Stock Prices
 # Based on: https://github.com/microsoft/autogen/blob/tutorial/website/docs/getting-started/code-executors.ipynb
 
 # Installed: pip install -qqq 'pyautogen[local-jupyter-exec]'
@@ -7,9 +7,9 @@ import os
 import tempfile
 import shutil
 from autogen import ConversableAgent, UserProxyAgent, AssistantAgent
-from IPython.display import Image
 import datetime
 import sys # Redirecting standard output to a file instead
+
 
 # Duplicate output to file and screen
 class Tee:
@@ -58,6 +58,7 @@ code_writer_system_message = (
     "\n"
     "Write code incrementally and leverage the statefulness of the kernel to avoid repeating code.\n"
     "Import libraries in a separate code block.\n"
+    "Pip install any required libraries.\n" # MS ADDED
     "Define a function or a class in a separate code block.\n"
     "Run code that produces output in a separate code block.\n"
     "Run code that involves expensive operations like download, upload, and call external APIs in a separate code block.\n"
@@ -87,7 +88,7 @@ ollama_models = [
     {"model_name": "yi:34b-chat-q4_K_M", "display_name" : "Yi_34b_Chat_Q4"},
 ]
 
-test_prefix = "Fib"
+test_prefix = "Stocks"
 
 for ollama_model in ollama_models:
 
@@ -106,8 +107,7 @@ for ollama_model in ollama_models:
 
             with Tee(output_file, 'w'):
 
-                # MS - LLM will be the one running on my machine using liteLLM, port 8801, name doesn't mean anything in this case.
-                # Command to run LiteLLM: litellm --model ollama/phind-codellama:34b-v2 --port 8801
+                # MS - LLM will be the one running on the host machine (Ollama)
                 code_writer_agent = ConversableAgent(
                     "code_writer",
                     system_message=code_writer_system_message,
@@ -139,23 +139,23 @@ for ollama_model in ollama_models:
                     human_input_mode="ALWAYS",
                 )
 
-                # Here is an example of solving a math problem through a conversation between the code writer and the code executor:
+                # Now we can try a more complex example that involves querying the web. Let's say we want to get the the stock
+                # prices year-to-date for Tesla and Meta (formerly Facebook). We can also use the two agents with several iterations
+                # of conversation.
 
                 today = datetime.datetime.now().strftime("%Y-%m-%d")
 
                 print(f"-----\n\n{display_name}\n\n{today}\n\nIteration {iteration}\n\n-----\n")
 
                 chat_result = code_executor_agent.initiate_chat(
-                    code_writer_agent,
-                    message="Write Python code to calculate the 14th Fibonacci number.",
+                    code_writer_agent, message=f"Today is {today}. Write Python code to plot TSLA's and META's stock prices YTD."
                 )
-
                 # Clean up the temporary directory and restart the Jupyter server to free up the kernel resources.
 
+                # Clean up for next round
                 shutil.rmtree(temp_dir)
                 code_executor_agent.code_executor.restart()
 
         else:
             print(f"{output_file} already exists, ignoring.")
-
-    # break
+        # break
