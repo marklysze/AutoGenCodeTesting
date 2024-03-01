@@ -19,6 +19,8 @@ Note: Fn for n = 14 is 377. If we start at n = 0 the 14th number is 233, so n = 
 See the [results](results) folder for code outputs.
 **Model** | **Run 1** | **Run 2** | **Notes**
 ---|---|---|---|
+CodeLlama 7b Python | :x: | :x: |
+CodeLlama 13b Python | :x: | :x: |
 CodeLlama 34b Instruct | :white_check_mark: | :white_check_mark: |
 CodeLlama 34b Python | :x: | :x: |
 DeepSeek Coder 6.7b | :white_check_mark:| :white_check_mark:|

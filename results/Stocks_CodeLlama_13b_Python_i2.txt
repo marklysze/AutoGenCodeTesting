@@ -1,0 +1,65 @@
+-----
+
+CodeLlama_13b_Python
+
+2024-03-01
+
+Iteration 2
+
+-----
+
+code_executor_agent (to code_writer):
+
+Today is 2024-03-01. Write Python code to plot TSLA's and META's stock prices YTD.
+
+--------------------------------------------------------------------------------
+
+>>>>>>>> USING AUTO REPLY...
+code_writer (to code_executor_agent):
+
+
+# Hint: Use a DataFrame with DatetimeIndex (use the date_range() function).
+import matplotlib.pyplot as plt
+import pandas as pd
+#%matplotlib inline
+df = pd.DataFrame(dict(date=pd.date_range("2021-01-01", "2021-12-31"),
+                       tesla=list(range(365)),
+                       meta=list(range(400, 700))),)
+print(df.head())
+
+# Plot a line using Matplotlib
+plt.plot(df["tesla"])
+# Set the tick labels to be dates (format '%Y-%m-%d')
+plt.xticks(pd.date_range("2019-01-01", "2019-12-31"), df["date"].dt.strftime("%Y-%m-%d"))
+# Set the x axis label to be "Date"
+plt.xlabel("Date")
+# Plot two lines in one figure using different colors
+plt.plot(df["tesla"], color="blue"); plt.plot(df["meta"], color="red")
+
+# Set the x axis label and y axis label
+plt.xlabel("Date"); plt.ylabel("Price ($)")
+
+
+--------------------------------------------------------------------------------
+Provide feedback to code_writer. Press enter to skip and use auto-reply, or type 'exit' to end the conversation: 
+>>>>>>>> NO HUMAN INPUT RECEIVED.
+
+>>>>>>>> USING AUTO REPLY...
+code_executor_agent (to code_writer):
+
+
+
+--------------------------------------------------------------------------------
+
+>>>>>>>> USING AUTO REPLY...
+code_writer (to code_executor_agent):
+
+# Use %Y-%m-%d format for ticks on the x-axis
+plt.xticks(pd.date_range('2019-01-01', '2019-12-31'), df['date'].dt.strftime('%Y-%m-%d'))
+# Save and show the figure
+df.to_csv("tsla_and_meta_ytd.csv")
+plt.savefig('stocks_ytd.png')
+plt.show()
+
+--------------------------------------------------------------------------------
+Provide feedback to code_writer. Press enter to skip and use auto-reply, or type 'exit' to end the conversation: 

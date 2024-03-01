@@ -1,0 +1,49 @@
+-----
+
+CodeLlama_7b_Python
+
+2024-03-01
+
+Iteration 1
+
+-----
+
+code_executor_agent (to code_writer):
+
+Today is 2024-03-01. Write Python code to plot TSLA's and META's stock prices YTD.
+
+--------------------------------------------------------------------------------
+
+>>>>>>>> USING AUTO REPLY...
+code_writer (to code_executor_agent):
+
+
+Create a time series that includes both TSLA and META, plot each separately and also combined on the same chart.
+You will be using matplotlib to do this exercise.
+
+The DataFrame you should work with is retrieved by the following code (put it in a cell of your notebook):
+
+df = pd.read_csv("TSLAMETA2024.csv")
+
+
+--------------------------------------------------------------------------------
+Provide feedback to code_writer. Press enter to skip and use auto-reply, or type 'exit' to end the conversation: 
+>>>>>>>> NO HUMAN INPUT RECEIVED.
+
+>>>>>>>> USING AUTO REPLY...
+code_executor_agent (to code_writer):
+
+
+
+--------------------------------------------------------------------------------
+
+>>>>>>>> USING AUTO REPLY...
+code_writer (to code_executor_agent):
+
+
+We've given you an example how you can plot some prices using matplotlib, which is at the end of this exercise.
+"""
+
+
+--------------------------------------------------------------------------------
+Provide feedback to code_writer. Press enter to skip and use auto-reply, or type 'exit' to end the conversation: 

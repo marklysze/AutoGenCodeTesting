@@ -1,0 +1,52 @@
+-----
+
+CodeLlama_13b_Python
+
+2024-03-01
+
+Iteration 1
+
+-----
+
+code_executor_agent (to code_writer):
+
+Today is 2024-03-01. Write Python code to plot TSLA's and META's stock prices YTD.
+
+--------------------------------------------------------------------------------
+
+>>>>>>>> USING AUTO REPLY...
+code_writer (to code_executor_agent):
+
+
+# Plot them on the same chart, but have each series be a different color, so you can compare their performance visually.
+import matplotlib.pyplot as plt
+import yfinance as yf
+
+stock_list = ["TSLA", "META"]
+data = pd.DataFrame()
+for stock in stock_list:
+    data[stock] = yf.download(stock, period="ytd")["Close"].astype("float") # close price
+# plot
+fig = plt.figure(figsize=(12.5, 5))
+plt.plot(data)
+
+
+--------------------------------------------------------------------------------
+Provide feedback to code_writer. Press enter to skip and use auto-reply, or type 'exit' to end the conversation: 
+>>>>>>>> NO HUMAN INPUT RECEIVED.
+
+>>>>>>>> USING AUTO REPLY...
+code_executor_agent (to code_writer):
+
+
+
+--------------------------------------------------------------------------------
+
+>>>>>>>> USING AUTO REPLY...
+code_writer (to code_executor_agent):
+
+plt.legend(loc="upper left", fontsize=14)
+plt.show()
+
+--------------------------------------------------------------------------------
+Provide feedback to code_writer. Press enter to skip and use auto-reply, or type 'exit' to end the conversation: 

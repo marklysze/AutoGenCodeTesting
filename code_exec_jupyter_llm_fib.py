@@ -68,6 +68,8 @@ code_writer_system_message = (
 )
 
 ollama_models = [
+    {"model_name": "codellama:7b-python", "display_name": "CodeLlama_7b_Python"},
+    {"model_name": "codellama:13b-python", "display_name": "CodeLlama_13b_Python"},
     {"model_name": "codellama:34b-instruct", "display_name": "CodeLlama_34b_Instruct"},
     {"model_name": "codellama:34b-python", "display_name": "CodeLlama_34b_Python"},
     {"model_name": "deepseek-coder:6.7b-instruct-q6_K", "display_name": "DeepSeek_Coder"},
