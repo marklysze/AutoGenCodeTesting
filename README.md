@@ -46,6 +46,8 @@ Code should generate: An image for each stock OR an image including both stocks.
 See the [results](results) folder for code outputs.
 **Model** | **Run 1** | **Run 2** | **Notes**
 ---|---|---|---|
+CodeLlama 7b Python |  |  |
+CodeLlama 13b Python |  |  |
 CodeLlama 34b Instruct |  |  |
 CodeLlama 34b Python |  |  |
 DeepSeek Coder 6.7b |  |  |
