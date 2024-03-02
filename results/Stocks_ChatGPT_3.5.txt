@@ -1,0 +1,26 @@
+import yfinance as yf
+import matplotlib.pyplot as plt
+from datetime import datetime
+
+# Define the ticker symbols
+tickers = ['TSLA', 'META']
+
+# Get current date
+current_date = datetime.now().strftime('%Y-%m-%d')
+
+# Fetch stock data YTD
+stock_data = yf.download(tickers, start='2024-01-01', end=current_date)['Adj Close']
+
+# Plot the stock prices
+plt.figure(figsize=(10, 6))
+for ticker in tickers:
+    plt.plot(stock_data.index, stock_data[ticker], label=ticker)
+
+plt.title('YTD Stock Prices')
+plt.xlabel('Date')
+plt.ylabel('Price (USD)')
+plt.legend()
+plt.grid(True)
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()

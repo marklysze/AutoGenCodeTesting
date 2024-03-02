@@ -17,6 +17,9 @@ Code should generate: **233** or **377**
 Note: Fn for n = 14 is 377. If we start at n = 0 the 14th number is 233, so n = 14 is actually the 15th Fibonacci number in the sequence. Therefore, some LLM's code will generate 233 and some 377. We will accept both as the question is ambiguous.
 
 See the [results](results) folder for code outputs.
+
+See what [ChatGPT 3.5 generated](results/Fib_ChatGPT_3.5.txt) (which output 377).
+
 **Model** | **Run 1** | **Run 2** | **Notes**
 ---|---|---|---|
 CodeLlama 7b Python | :x: | :x: |
@@ -45,6 +48,9 @@ Prompt for LLM: **Today is {today}. Write Python code to plot TSLA's and META's 
 Code should generate: An image for each stock OR an image including both stocks. If it tries to display it (Jupyter notebook) it's a bonus (but doesn't affect whether it's correct or not).
 
 See the [results](results) folder for code outputs.
+
+See what [ChatGPT 3.5 generated](results/Stocks_ChatGPT_3.5.txt) (which was correct).
+
 **Model** | **Run 1** | **Run 2** | **Notes**
 ---|---|---|---|
 CodeLlama 7b Python | :x: | :x: |

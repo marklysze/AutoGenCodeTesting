@@ -1,0 +1,12 @@
+def fibonacci(n):
+    if n <= 1:
+        return n
+    else:
+        fib_sequence = [0, 1]
+        for i in range(2, n + 1):
+            fib_sequence.append(fib_sequence[i - 1] + fib_sequence[i - 2])
+        return fib_sequence[n]
+
+# Calculate the 14th Fibonacci number
+result = fibonacci(14)
+print("The 14th Fibonacci number is:", result)
