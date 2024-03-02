@@ -30,7 +30,8 @@ Mistral 7b 0.2 Instruct | :white_check_mark: | :white_check_mark: |
 Mixtral 8x7b Q4 | :white_check_mark: | :white_check_mark:|
 Mixtral 8x7b Q5 | :white_check_mark: | :white_check_mark: |
 Neural Chat 7b Chat | :white_check_mark: | :white_check_mark: |
-Nexus Raven | :x: | :white_check_mark: 
+Nexus Raven | :x: | :white_check_mark: |
+OpenHermes 7b Mistral | :white_check_mark: | :white_check_mark: |
 Orca2 13b | :white_check_mark: | :x: |
 Phi-2 | :white_check_mark: | :x: |
 Phind-CodeLlama34b | :white_check_mark: | :white_check_mark: |
@@ -46,21 +47,22 @@ Code should generate: An image for each stock OR an image including both stocks.
 See the [results](results) folder for code outputs.
 **Model** | **Run 1** | **Run 2** | **Notes**
 ---|---|---|---|
-CodeLlama 7b Python |  |  |
-CodeLlama 13b Python |  |  |
-CodeLlama 34b Instruct |  |  |
-CodeLlama 34b Python |  |  |
-DeepSeek Coder 6.7b |  |  |
-Llama2 7b Chat |  |  |
-Llama2 13b Chat |  |  |
-Mistral 7b 0.2 Instruct |  |  |
-Mixtral 8x7b Q4 |  |  |
-Mixtral 8x7b Q5 |  |  |
-Neural Chat 7b Chat |  |  |
-Nexus Raven |  |  |
-Orca2 13b |  |  |
-Phi-2 |  |  |
-Phind-CodeLlama34b |  |  |
-Qwen 14b |  |  |
-Solar 10.7b Instruct |  |  |
-Yi-34b Chat |  |  |
+CodeLlama 7b Python | :x: | :x: |
+CodeLlama 13b Python | :large_orange_diamond: | :x: | Just missing "import pandas as pd"
+CodeLlama 34b Instruct | :white_check_mark: | :white_check_mark: |
+CodeLlama 34b Python | :x: | :x: | Expected a CSV file
+DeepSeek Coder 6.7b | :large_orange_diamond: | :white_check_mark: | Out of date library usage
+Llama2 7b Chat | :x: | :large_orange_diamond: | Close, showed price change instead of price
+Llama2 13b Chat | :x: | :x: |
+Mistral 7b 0.2 Instruct | :large_orange_diamond: | :large_orange_diamond: | Minor string formatting error, used "FB" instead of "META" as ticker symbol
+Mixtral 8x7b Q4 | :white_check_mark: | :x: |
+Mixtral 8x7b Q5 | :white_check_mark: | :large_orange_diamond: | Not quite right on second run
+Neural Chat 7b Chat | :x: | :x: |
+Nexus Raven | :x: | :x: | First run no code, second is a blank chart
+OpenHermes 7b Mistral | :x: | :x: |
+Orca2 13b | :x: | :x: | No code
+Phi-2 | :x: | :x: | Off the track
+Phind-CodeLlama34b | :white_check_mark: | :x: |
+Qwen 14b | :large_orange_diamond: | :x: | Timeframe out
+Solar 10.7b Instruct | :x: | :x: |
+Yi-34b Chat | :x: | :x: | Old retired library use
