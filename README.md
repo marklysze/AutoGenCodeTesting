@@ -1,8 +1,6 @@
 Testing Code Generation using alt-models (Local LLMs)
 
-See the results folder for outputs and summaries.
-
-Testing so far...
+Two tests so far - Fibonacci function and stock market chart. More to come.
 
 ## Code Executors
 
