@@ -38,6 +38,9 @@ Phi-2 | :white_check_mark: | :x: |
 Phind-CodeLlama34b | :white_check_mark: | :white_check_mark: |
 Qwen 14b | :white_check_mark: | :white_check_mark: |
 Solar 10.7b Instruct | :x: | :white_check_mark: |
+StarCoder2 3b |  |  |
+StarCoder2 7b |  |  |
+StarCoder2 15b |  |  |
 Yi-34b Chat | :white_check_mark: | :white_check_mark: |
 
 #### Stock market chart
@@ -69,4 +72,7 @@ Phi-2 | :x: | :x: | Off the track
 Phind-CodeLlama34b | :white_check_mark: | :x: |
 Qwen 14b | :large_orange_diamond: | :x: | Timeframe out
 Solar 10.7b Instruct | :x: | :x: |
+StarCoder2 3b |  |  |
+StarCoder2 7b |  |  |
+StarCoder2 15b |  |  |
 Yi-34b Chat | :x: | :x: | Old retired library use

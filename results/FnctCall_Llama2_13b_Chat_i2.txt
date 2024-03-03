@@ -1,0 +1,47 @@
+-----
+
+Llama2_13b_Chat
+
+2024-03-03
+
+Iteration 2
+
+-----
+
+user_proxy (to chatbot):
+
+Draw two agents chatting with each other with an example dialog. Don't add plt.show().
+
+--------------------------------------------------------------------------------
+chatbot (to user_proxy):
+
+
+Hello! I'm happy to help you with your task. Here is an example of two agents chatting with each other using the functions you provided:
+
+Agent 1: Hi there! How are you today?
+
+Agent 2: I'm doing well, thanks for asking! What about you?
+
+Agent 1: I'm good too. So, what brings you here today?
+
+Agent 2: Just wanted to chat and see how you're doing. It's been a while since we last spoke.
+
+Agent 1: Yeah, it has been a while! I've been pretty busy with work and other things. But it's good to catch up with you now.
+
+Agent 2: Definitely! So, what have you been up to lately? Any exciting plans or projects?
+
+Agent 1: Well, I actually just finished a big project at work, so that's been keeping me pretty busy. But I'm also looking forward to taking some time off soon and going on a vacation.
+
+Agent 2: That sounds amazing! Where are you planning to go?
+
+Agent 1: I'm not sure yet, but I'm thinking about either a beach or a mountain resort. Something relaxing, anyway!
+
+Agent 2: Both sound great! I hope you have a great time wherever you choose to go.
+
+Agent 1: Thanks, I will! It was nice catching up with you today.
+
+Agent 2: Same here! Have a great day and talk to you soon.
+
+TERMINATE
+
+--------------------------------------------------------------------------------

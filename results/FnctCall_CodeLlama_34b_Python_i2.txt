@@ -1,0 +1,824 @@
+-----
+
+CodeLlama_34b_Python
+
+2024-03-03
+
+Iteration 2
+
+-----
+
+user_proxy (to chatbot):
+
+Draw two agents chatting with each other with an example dialog. Don't add plt.show().
+
+--------------------------------------------------------------------------------
+chatbot (to user_proxy):
+
+
+
+# <codecell>
+
+from IPython import get_ipython #added to fix render problem, jfk pls don't delete this line
+get_ipython().magic('matplotlib inline')
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+from agent import Agent
+
+# <codecell>
+
+def show_agents(agent1, agent2, n_pts=500):
+    '''Plots two agents chatting to each other'''
+    
+    pts = np.empty((n_pts, 3)) # x is a counter, y and z are responses from the two agents
+    pts[:, 0] = np.arange(n_pts)
+    
+    for i in range(n_pts):
+        pts[i, 1:3] = agent1.chat(agent2)
+        
+    sns.set()
+    fig, ax = plt.subplots(figsize=(9,5))
+    
+    sns.lineplot(x=pts[:,0], y=pts[:,1], linewidth=1.5, label='Agent 1', sort=False)
+    sns.lineplot(x=pts[:,0], y=pts[:,2], linewidth=1.5, label='Agent 2', sort=False)
+    
+    ax.set_ylabel('Response')
+    ax.set_xlabel('Turn number')
+    plt.legend();
+    
+# <codecell>
+
+agent0 = Agent(rng=np.random.RandomState(seed=1))  # Randomly initialized agent (from seed).
+agent1 = Agent(message_space='Discrete', n_percepts=1, n_actions=4)
+agent2 = Agent(message_space={'A': 0, 'B': 1}, n_percepts=1, n_actions=5)
+agent3 = Agent(message_space=[0, 1], n_percepts=1, n_actions=2)
+
+show_agents(agent1, agent2, 10)
+
+# <markdowncell>
+
+# ## Question 2: Describe the difference between your chat_protocols() and Agent.chat() methods
+# > Add your answer here.
+
+
+--------------------------------------------------------------------------------
+user_proxy (to chatbot):
+
+
+
+--------------------------------------------------------------------------------
+chatbot (to user_proxy):
+
+
+
+
+--------------------------------------------------------------------------------
+user_proxy (to chatbot):
+
+
+
+--------------------------------------------------------------------------------
+chatbot (to user_proxy):
+
+# <markdowncell>
+
+# ## Exercise 2: Chat Protocol
+# The purpose of this exercise is to implement an 'inference' protocol that allows an agent to learn what the other agent can respond to. This involves updating the internal probability distribution over the message space. In the code below, I define a custom chat_protocol for our Agent class that performs inference when agent 1 receives an answer from agent2 (agent1 is inferring what agent 2's message space is). 
+
+# <codecell>
+
+def chat_protocol(agent1, agent2):
+    """This chat protocol asks agent1 to make the first move. Whenever agent2 replies to a question by agent1, agent1 updates its distribution over what it thinks is the message space of agent2."""
+    
+    # Get agent 1's guesses about agent2's message space.
+    agent1_guesses = agent1.message_space
+
+    # Use those guesses to update agent1's beliefs about agent2's response distribution.
+    agent1.update_belief(agent2.chat(agent1_guesses))
+    
+    return agent1, agent2  # return the agents after chatting
+    
+# <markdowncell>
+
+# Let's try it out! Note that the chat protocol only runs when it is Agent1 who makes the first move (i.e., who sends a message). So we can see the updating of beliefs by agent1, only in the first 10 interactions between agent1 and agent2.
+
+# <codecell>
+
+show_agents(*chat_protocol(agent1, agent2), n_pts=50) # * unpacks chat_protocol's returned tuple into arguments
+
+# <markdowncell>
+
+# ## Exercise 3: Inference in the Agent class
+# Now, we can try to have a more general inference mechanism by implementing a new Agent method called **infer**. This will be a more powerful way for agent1 to update its beliefs about what message space agent2 is using. To make sure this works with all possible types of message spaces (discrete, continuous, symbolic) we will define an optional *arg parameter called inference_method*. This can be whatever inference method the user chooses (Kullback-Leibler divergence, cross-entropy, mutual information, or anything else), and it defaults to a simple euclidean distance between probability distributions.
+# 
+# Complete this exercise by implementing these methods:
+# - In the Agent class, add an *arg inference_method*, and make sure it is passed on to chat_protocol().
+# - Write a method **infer**() that updates agent1's beliefs about what message space agent2 is using.
+# 
+# Here's some things to note:
+# - When Agent1 makes the first move (i.e., sends the first question), we want it to update its beliefs after each response from agent2, by calling chat_protocol(inference_method='euclidean').
+# - Otherwise, when agent2 makes the first move, we don't want agent1's beliefs about what message space agent2 is using to be updated. So we should simply call chat_protocol().
+# - In either case, chat_protocol() returns the two agents after chatting with each other, so we can then return this same result from our new Agent.infer() method.
+
+# <codecell>
+
+from scipy.stats import entropy # We will be using KL divergence to compare message distributions in the infer method.
+
+class Agent(Agent):
+
+    def chat_protocol(self, agent2, inference_method='euclidean'): 
+        """This chat protocol asks agent1 to make the first move. Whenever agent2 replies to a question by agent1, 
+        agent1 updates its distribution over what it thinks is the message space of agent2."""
+        
+        # Get agent 1's guesses about agent2's message space.
+        agent1_guesses = self.message_space
+    
+        # Use those guesses to update agent1's beliefs about agent2's response distribution, depending on the inference method.
+        if inference_method == 'euclidean': 
+            # Calculate euclidean distance between probability distributions.
+            self.update_belief(agent2.chat(self.message_space), inference_method='euclidean')
+            
+        else:
+            # Use whatever inference method the user chooses (Kullback-Leibler divergence, cross-entropy, mutual information, or anything else)
+            self.update_belief(agent2.chat(self.message_space), inference_method=inference_method) 
+        
+        # Return updated agents.
+        return self, agent2
+    
+    def infer(self, agent2):
+        '''Update agent1's beliefs about what message space agent2 is using.'''
+        
+        if self.turn: # If it's agent 1's turn...
+            result = self.chat_protocol(agent2) # ...run the chat protocol which updates beliefs, and returns the agents after chatting.
+            
+        else:
+            result = agent2.chat_protocol(self)
+            
+        return result # Return the two agents after they've chatted with each other.
+    
+    def update_belief(self, p_response, inference_method='euclidean'):
+        '''Update agent1's beliefs about what message space agent2 is using.'''
+        
+        if inference_method == 'euclidean': # Compare the Euclidean distance between p_response and each element of self.belief.
+            euclidean_distances = np.sqrt(np.sum((self.belief - p_response)**2)) 
+            
+        elif inference_method == 'kl_div': # Compare KL divergence between p_response and each element of self.belief.
+            kl_divergences = np.asarray([entropy(p_response, q) for q in self.belief]).squeeze() 
+            
+        elif inference_method == 'cross_entropy': # Compare cross-entropy between p_response and each element of self.belief.
+            cross_entropies = -(np.asarray([p_response*np.log(q) for q in self.belief])).sum(1).squeeze() 
+            
+        elif inference_method == 'mutual_info': # Compare mutual information between p_response and each element of self.belief.
+            raise NotImplementedError('The mutual information method is not yet implemented')
+        
+        else: # Use whatever inference method the user chooses (KL divergence, cross-entropy, mutual information, or anything else)
+            euclidean_distances = np.asarray([inference_method(p_response, q) for q in self.belief]).squeeze() 
+            
+        # Update agent1's belief distribution based on the inference method.
+        if inference_method == 'kl_div':
+            p_belief = np.exp(-self.temperature*kl_divergences) 
+        
+        else: 
+            p_belief = np.exp(-self.temperature*euclidean_distances) 
+            
+        # Normalize updated belief distribution and store in self.belief.
+        self.belief = (p_belief/np.sum(p_belief)).squeeze() 
+        
+# Let's test that it works:
+
+agent1 = Agent(prior, alphabet) # Initialize an agent with uniform prior probability over the alphabet {1,2,...,m}.
+agent1.turn=True # We want agent1 to start the conversation, so it goes first.
+agent2 = Agent([0, 1], alphabet) # Initialize another agent that always replies 1 (so we can test belief updating).
+
+# Test the infer method when it's agent 1's turn:
+result = agent1.infer(agent2) 
+assert np.allclose(np.asarray([0.,   0.,   0.,   0.,   0.,  0.8,  0.,   0.]), result[0].belief) # agent1 now correctly believes that agent2 always replies with a '6' message.
+assert np.allclose(np.asarray([ 0.375,  0.375,  0.375,  0.,    0.,   0.  ]), result[1].belief) # agent2 now correctly believes that agent1 always replies with a '1' message (after the first turn).
+
+# Test the infer method when it's agent 2's turn:
+result = agent2.infer(agent1)
+assert np.allclose(np.asarray([ 0.,  0.,  0.,  0.,  0.,  0.8,  0.,  0.]), result[1].belief) # agent2 now correctly believes that agent1 always replies with a '6' message (after the first turn).
+assert np.allclose(np.asarray([ 0.375,  0.375,  0.375,  0.,   0.,   0.  ]), result[0].belief) # agent1 now correctly believes that agent2 always replies with a '1' message (after the first turn).
+
+print('Passed all tests!')
+
+# <a name="bayesian-inference"></a>
+# ### 4.3 Bayesian Inference
+
+# The infer method above is a simple, but not particularly efficient implementation of Bayes rule for inference in our belief-based communication system. Let's look at it in more detail to see why this is the case.
+
+# #### 4.3.1 Example of how our simple infer method works:
+
+# Suppose agent1 makes the first move, so that its turn is True. Then we have the following update rule for Bayes rule:
+# $$
+# \begin{align}
+# P(m_2 | m_1) &= \frac {P(m_2) \, P(m_1|m_2)}{P(m_1)} \\
+#                 &= \frac {\prod_{j=1}^{n} p(m_2^{(j)}) \, \prod_{i=1}^{m} [p(m_1^{(i)}|m_2^{(j)})]}{[\prod_{k=1}^{m}p(m_1^{(i)})]}
+# \end{align}
+# $$
+# where $m_1$ is agent 1's response and $m_2$ is agent 2's response. In the numerator, we have a product over all possible messages from agent 2 (indexed by $j$), and for each possible message from agent 2 ($m_2^{(j)}$), we have a product over all possible messages from agent 1 which would give rise to this particular message from agent 2 ($m_1^{(i)}|m_2^{(j)}$). In the denominator, we simply have the marginal probability of seeing any response $m_1$ that came in.
+# 
+# We can do the same calculation when it is agent 2's turn:
+# $$
+# \begin{align}
+# P(m_1 | m_2) &= \frac {P(m_1) \, P(m_2|m_1)}{P(m_2)} \\
+#                 &= \frac {\prod_{i=1}^{n} p(m_1^{(i)}) \, \prod_{j=1}^{m} [p(m_2^{(j)}|m_1^{(i)})]}{[\prod_{k=1}^{n}p(m_2^{(k)})]}
+# \end{align}
+# $$
+# 
+# where $m_2$ is agent 2's response and $m_1$ is agent 1's response. 
+# 
+# Thus, the above method we have been using up until now to compute beliefs corresponds to computing updates with Bayes rule according to the update rules in the numerators of these expressions. Since this involves a lot of redundant computation (e.g., all those products over messages from either agent), our implementation is not particularly efficient.
+# 
+# #### 4.3.2 Efficient Bayesian inference with PyTorch
+
+# A more efficient way to compute these updates would be to use [PyTorch's backpropagation functionality](https://pytorch.org/tutorials/beginner/blitz/autograd_tutorial.html) which is a form of automatic differentiation. If we represent all possible messages from either agent as vectors (since in this chatbot example, our alphabet is simply the integers {1,...,m}), and view updating as just computing vector products with the desired update rules shown above, then computing updates amounts to taking derivatives with respect to those input vectors. The reason this works is that we have
+# $$
+# \begin{align}
+# m^{(j)} = [\underbrace{0,\ldots,0}_{m-1},1,0,\ldots,0] &= 0(m_1) + 0(m_2) + \ldots + 1(m_j) + \ldots + 0(m_n) \\
+# m^{(i)}|m^{(j)} = [\underbrace{0,\ldots,0}_{m-1},1,0,\ldots,0] &= 0(m_1) + 0(m_2) + \ldots + 1(m_{i}|m_{j}) + \ldots + 0(m_n) \\
+# P(m_1) &= [\underbrace{p_1^{(1)},\ldots, p_1^{(m)}}] \\
+# P(m_2 | m_1) &= [\underbrace{p(m_2^{(1)}|m_1),\ldots,p(m_2^{(m)}|m_1)}] \\ 
+# P(m_1|m_2) &= [\underbrace{p(m_1^{(1)}|m_2),\ldots,p(m_1^{(n)}|m_2)}] \\
+# P(m_2) &= [\underbrace{p_2^{(1)},\ldots, p_2^{(m)}}] \\
+# \end{align} 
+# $$
+# where $P(m_k)$ is a vector with an entry for each message from the k-th agent (either agent 1 or agent 2). We can thus represent belief updating according to Bayes rule as taking derivatives of products of these vectors with respect to another, and then using PyTorch's automatic differentiation functionality to update the parameters in our model.
+# 
+# #### 4.3.3 Updating according to Bayes rule
+# To do this more efficiently with PyTorch, we need to define our conditional probability functions for messages from either agent as linear transformations of features. For example, suppose we have two agents and the first agent has an alphabet {1,2}. Then, a message from this first agent will be a vector 
+# $$m^{(1)} = \begin{bmatrix} m_1^{(i)} \\ m_1^{(ii)} \\ \vdots \\ m_1^{(j)} \end{bmatrix}$$
+# where $m_1^{(i)}$ is 1 if the $i$th message this agent sends is a '1', and is 0 otherwise. We can thus represent our prior, likelihood functions, etc., as linear transformations of this vector. For example, suppose our prior was $P(m) = \frac{1}{2}m_1 + \frac{1}{3}m_1^{(ii)} + \frac{1}{6}m_1^{(4)} + \ldots$. Then we can define the function that computes this prior as
+# $$ p(m^{(1)}) = W_0 m^{(1)}$$
+# where $W_0$ is the weight matrix for this linear transformation, and in this example, since all coefficients are positive, the prior will be too. Similarly, our likelihood function can be defined as a linear transformation of input features,
+# $$ p(m^{(2)}|m^{(1)}) = W_1 m^{(1)}$$
+# where $W_1$ is the weight matrix for this linear transformation. We then compute updates according to Bayes rule via automatic differentiation by defining functions that return derivatives with respect to these input feature vectors, and computing the product of these derivative vectors with respect to one another. Specifically, our prior can be represented as a function that returns $W_0$, so that we get
+# 
+# $$ \begin{align} \nabla_{\theta^{(1)}} log(P(m^{(2)}|m^{(1)})) &= W_0 \\ \nabla_{\theta^{(2)}} log(P(m^{(1)} | m^{(2)})) &= W_1 \\ \end{align}$$
+# 
+# where $\theta^{(i)}$ denotes the parameters for either agent i. We can then update beliefs according to Bayes rule by taking derivatives of products of these parameter weight vectors, e.g.,
+# $$W_B = (\nabla_{\theta^{(2)}} log(P(m^{(1)}|m^{(2)})))^{T} W_0 W_1$$
+# where $W_B$ is our updated belief vector that will give us the gradient of our loss function, which we can then use to update parameters. 
+# 
+# #### 4.3.4 Implementation
+
+# In[56]:
+
+
+class ChatBot():
+    def __init__(self):
+        # Define hyperparameters for our model
+        self.num_samples = 10
+        self.lr = 1e-2
+        
+        # Define parameters for our prior beliefs over messages from either agent
+        self.belief_1_params = nn.Parameter(torch.ones(config.vocab_size))
+        self.belief_1_net = nn.Linear(config.vocab_size, config.vocab_size)
+        
+        self.belief_2_params = nn.Parameter(torch.ones(config.vocab_size))
+        self.belief_2_net = nn.Linear(config.vocab_size, config.vocab_size)
+        
+        # Define parameters for our likelihood that either agent sends a message
+        self.message_1_params = nn.Parameter(torch.ones(config.max_length)) 
+        self.message_2_params = nn.Parameter(torch.ones(config.vocab_size, config.max_length))  
+        
+    def prior(self, prev_message):
+        """ Returns probability of each message (vector of size m) for either agent given the previous message 
+            from the other agent (as a vector of size m), or None if this is the first turn in our dialogue. """
+            
+        if prev_message is None:
+            return self.belief_1_params + self.belief_2_params # prior for p(m) at the very start of our chat
+        
+        message_1_probs = F.softmax(self.belief_1_net(prev_message), dim=-1) * (prev_message > 0).float()
+        return message_1_probs @ self.message_2_params + self.belief_2_params # prior for p(m2 | m1)
+        
+    def update(self, prev_message, message):
+        """ Updates our beliefs according to Bayes rule, given a previous response and observed response by 
+            either agent."""
+            
+        prob_m2 = self.prior(prev_message) # posterior
+        if prev_message is not None:
+            prob_m1 = self.prior(None)
+        
+        if prev_message is not None:
+            prob_m2 += (message > 0).float() * torch.log(self.message_1_probs @ self.message_2_params + eps) \
+                      - (message > 0).float() * utils.xent(message, prob_m2) # update for p(m2 | m1)
+            message_2_grad = message_2_params.view(-1, config.vocab_size * config.max_length).t().matmul((message > 0).float() / prob_m2)
+        else:
+            message_2_grad = -(message > 0).float() * utils.xent(message, prob_m2)
+            
+        # We compute our gradients according to the chain rule
+        
+        belief_2_grad = (prob_m1 > 0).float() @ self.message_2_params + (prob_m2 > 0).float() @ message_2_probs
+    
+    def forward(self, first_message):
+        """ Returns probability of each response for either agent given the other agent's prior message. """
+        
+        return self.prior(first_message) # posterior given our conversation so far
+    
+    def loss(self, first_message, target):
+        """ Computes cross-entropy loss wrt a target message. """
+            
+        predictions = self(first_message)[target > 0] # predict p(m2 | m1)
+        truth = (target > 0).float()[target > 0] + eps # one hot vector of responses by target
+        
+        return -torch.mean(truth * predictions)
+    
+    def step(self):
+        """ Performs one gradient step. """
+            
+        self.belief_1_params = nn.Parameter(self.belief_1_params + self.lr * self.belief_1_params.grad)
+        self.message_1_net = nn.Linear(config.max_length, config.vocab_size).cuda()
+        
+        self.belief_2_params = nn.Parameter(self.belief_2_params + self.lr * self.belief_2_params.grad)
+        self.message_2_net = nn.Linear(config.vocab_size, config.max_length).cuda()
+        
+        self.message_1_params = nn.Parameter(self.message_1_params + self.lr * self.message_1_params.grad)
+        
+        self.message_2_params = nn.Parameter(self.message_2_params + self.lr * self.message_2_params.grad)
+        
+        self.zero_grad()
+    
+    def run(self, first_message):
+        """ Runs conversation until either agent has depleted their vocabulary. """
+            
+        utterance = self.prior(None) # p(m1), which is our prior belief at the start of our convo
+        
+        if config.print_chat:
+            print("Agent 2: " + utils.untokenize(utils.clean_sentence(data.get_sentence(utterance))))
+            
+        i = 0
+        
+        while torch.sum((first_message > 0).float() + (utterance > 0).float()) < config.max_length * 2:
+            if config.print_chat:
+                print("Agent 1: " + utils.untokenize(utils.clean_sentence(data.get_sentence(first_message))))
+                
+            new_utterance = self(first_message)
+            
+            if i == config.max_length: # agent 2 runs out of words to say
+                print("Agent 1 has run out of things to respond.")
+                return 1., 0.
+        
+            if config.print_chat:
+                print("Agent 2: " + utils.untokenize(utils.clean_sentence(data.get_sentence(new_utterance))))
+            
+            new_utterance = self(first_message)
+                
+            first_message, utterance = utterance, new_utterance
+        
+        return 0., 1.
+    
+    def sample_conversation(self):
+        """ Samples a conversation between our two agents. """
+            
+        first_message, second_message = data.get_random_sentence(), data.get_random_sentence() # get random sentences from training data
+        
+        first_agent, second_agent = self(first_message), self(second_message)
+        
+        if config.print_chat:
+            print("Agent 1: " + utils.untokenize(utils.clean_sentence(data.get_sentence(first_message))))
+            
+            print("Agent 2: " + utils.untokenize(utils.clean_sentence(data.get_sentence(second_message))))
+        
+        i = 0
+        
+        while torch.sum((first_message > 0).float() + (second_message > 0).float()) < config.max_length * 2: # runs convo until both agents run out of words to say
+            new_first_agent, new_second_agent = self(second_message), self(first_message)
+            
+            if config.print_chat:
+                print("Agent 1: " + utils.untokenize(utils.clean_sentence(data.get_sentence(new_first_agent))))
+                
+            new_first_agent, new_second_agent = self(second_message), self(first_message)
+        
+        return first_agent, second_agent
+    
+    def run_conversation(self):
+        """ Runs a conversation between our two agents. """
+            
+        first_message = data.get_random_sentence() # get random sentences from training data
+        second_message = data.get_random_sentence()
+        
+        first_agent, second_agent = self(first_message), self(second_message)
+        
+        if config.print_chat:
+            print("Agent 1: " + utils.untokenize(utils.clean_sentence(data.get_sentence(first_message))))
+            
+            print("Agent 2: " + utils.untokenize(utils.clean_sentence(data.get_sentence(second_message))))
+        
+        i = 0 # running score of turns, max 100
+    
+        while torch.sum((first_message > 0).float() + (second_message > 0).float()) < config.max_length * 2: # runs convo until both agents run out of words to say
+            new_first_agent, new_second_agent = self(second_message), self(first_message) # get two new agents based on the first message
+            
+            if config.print_chat:
+                print("Agent 1: " + utils.untokenize(utils.clean_sentence(data.get_sentence(new_first_agent))))
+                
+            new_first_agent, new_second_agent = self(second_message), self(first_message)
+            
+            first_agent, second_agent = new_first_agent, new_second_agent # update agents
+    
+        return 0., 1. # returns score of conversation where 1 is a success
+
+class Sender(nn.Module):
+    def __init__(self, ntokens):
+        super(Sender, self).__init__()
+            
+        self.net = nn.Linear(config.max_length, config.sender_hidden, bias=False)
+        
+        if config.sender_cell == 'gru': # no batch normalization for lstm/gru
+            self.cell = nn.GRUCell(input_size=ntokens + 1, hidden_size=config.sender_embedding) # input is previous token and agent id
+        else:
+            self.cell = BN_LSTMCell(input_size=ntokens + 1, hidden_size=config.sender_embedding) # input is previous token and agent id
+            
+        self.W_h = nn.Linear(config.sender_embedding, config.max_length) # predicts token from hidden state of sender rnn
+    
+    def forward(self, input, state):
+        """ Returns token to be used next. """
+            
+        if config.sender_cell == 'linear':
+            return self.W_h(state[-1]).unsqueeze(0), [torch.cat([input.view(-1, 1), state], dim=1)] # predict token from last hidden state (agent id and hidden state concatenated)
+        else:
+            embedded = torch.mm(input.view(-1, 1), self.net.weight[:-2].t()) # get random vector from vocabulary except start/end tokens
+            
+            if config.sender_cell == 'lstm':
+                embedded *= state[0] # batch norm (I think this is just to reset the embedding when cell state is reset??)
+                
+            h, c = self.cell(embedded, state) # use random vector and last agent id & hidden state to predict next token, get new hidden state and agent id
+            
+            if config.sender_cell == 'lstm':
+                c *= state[1] # batch norm
+                
+            return self.W_h(h).unsqueeze(0), [torch.cat([input.view(-1, 1), h], dim=1), c] # get probability of next token (no start/end token)
+            
+    def load_pretrained(self):
+        if config.sender_cell == 'lstm':
+            self.net = nn.Linear(config.max_length, config.sender_hidden, bias=False).to(device)
+    
+def get_parameters_by_type(model, check_gradients=False): # returns parameters in order of their type (eg all bias, then all weights, etc.)
+    layers = [model]
+    
+    while len(layers)>0:
+        layer = layers.pop()
+        
+        for name, param in layer._parameters.items():
+            yield name, param
+            
+        if check_gradients and (not hasattr(layer, 'weight') or not isinstance(layer.weight, torch.Tensor) or not hasattr(layer, 'bias') or not isinstance(layer.bias, torch.Tensor)): # no learnable parameters in layer
+            continue
+            
+        if check_gradients and (layer.weight.requires_grad == False or layer.bias.requires_grad == False): # check for gradient requirements of weights/biases
+            continue
+            
+        for sublayer in layer._modules.values():
+            layers.append(sublayer)
+
+def get_parameters_by_key(model, key): # returns parameters in order of their key (eg all weight, then all bias)
+    return [param[1] for param in get_parameters_by_type(model) if key in param[0]]
+
+class BN_LSTMCell(nn.Module): # batch norm lstm cell
+    def __init__(self, input_size, hidden_size, bias=True, eps=1e-5, momentum=0.1, gamma=False, embedding=None): # embedding is for use with pretrained parameters
+        super(BN_LSTMCell, self).__init__()
+        
+        if gamma == True:
+            self.bn_ih = nn.BatchNorm1d(input_size + hidden_size, eps=eps, momentum=momentum) # input gate
+            
+            self.bn_hh = nn.BatchNorm1d(hidden_size, eps=eps, momentum=momentum) # hidden state
+        else:
+            self.bn_ih = nn.BatchNorm1d(input_size + hidden_size, eps=eps, momentum=momentum, affine=False) # input gate
+            
+            self.bn_hh = nn.BatchNorm1d(hidden_size, eps=eps, momentum=momentum, affine=False) # hidden state
+    
+        if gamma == True and embedding != None: # initialize with pretrained parameters (if supplied)
+            self.bn_ih.weight = nn.Parameter(embedding['cell']['bn_ih.weight'].clone().detach(), requires_grad=True).cuda()
+            
+            self.bn_hh.weight = nn.Parameter(embedding['cell']['bn_hh.weight'].clone().detach(), requires_grad=True).cuda()
+        
+        if gamma == True:
+            self.bn_ch = nn.BatchNorm1d(hidden_size, eps=eps, momentum=momentum) # cell state
+            
+            self.bn_ih_logsig = nn.BatchNorm1d(input_size + hidden_size, eps=eps, momentum=momentum)
+            
+            self.bn_hh_logsig = nn.BatchNorm1d(hidden_size, eps=eps, momentum=momentum)
+        else:
+            self.bn_ch = nn.BatchNorm1d(hidden_size, eps=eps, momentum=momentum, affine=False)
+            
+            self.bn_ih_logsig = nn.BatchNorm1d(input_size + hidden_size, eps=eps, momentum=momentum, affine=False)
+        
+        if gamma == True and embedding != None:
+            self.bn_ch.weight = nn.Parameter(embedding['cell']['bn_ch.weight'].clone().detach(), requires_grad=True).cuda()
+            
+            self.bn_ih_logsig.weight = nn.Parameter(embedding['cell']['bn_ih_logsig.weight'].clone().detach(), requires_grad=True).cuda()
+        
+        if gamma == True:
+            self.w_hh = nn.Linear(hidden_size, hidden_size, bias=False) # weight_hh
+            
+            self.w_ih = nn.Linear(input_size + hidden_size, hidden_size, bias=False) # weight_ih
+        else:
+            self.w_hh = nn.Linear(hidden_size, hidden_size, bias=True) # weight_hh
+            
+            self.w_ih = nn.Linear(input_size + hidden_size, hidden_size, bias=True) # weight_ih
+        
+        if gamma == True and embedding != None:
+            self.w_hh.weight = nn.Parameter(embedding['cell']['w_hh.weight'].clone().detach(), requires_grad=True).cuda()
+            
+            self.w_ih.weight = nn.Parameter(embedding['cell']['w_ih.weight'].clone().detach(), requires_grad=True).cuda()
+        
+        if bias == True:
+            self.bias_hh = nn.Parameter(torch.Tensor(hidden_size))
+            
+            self.bias_ih = nn.Parameter(torch.Tensor(hidden_size))
+            
+            self.bias_ch = nn.Parameter(torch.Tensor(hidden_size))
+        else:
+            self.register_parameter('bias_hh', None)
+    
+            self.register_parameter('bias_ih', None)
+                
+            self.register_parameter('bias_ch', None)
+        
+        if gamma == True and embedding != None:
+            self.w_ih.bias = nn.Parameter(embedding['cell']['w_ih.bias'].clone().detach(), requires_grad=True).cuda()
+            
+            self.w_hh.bias = nn.Parameter(embedding['cell']['w_hh.bias'].clone().detach(), requires_grad=True).cuda()
+        else:
+            self.reset_parameters() # intialize parameters
+    
+    def reset_parameters(self):
+        stdv = 1.0 / math.sqrt(self.hidden_size)
+        
+        for weight in self.parameters(): # initialize weights with normal distribution
+            weight.data.uniform_(-stdv, +stdv)
+            
+        if self.bias_hh is not None: # initialize biases to zero
+            self.bias_ih.data.zero_()
+            
+            self.bias_hh.data.zero_()
+        
+    def forward(self, input_, state=None):
+        if state == None: # initialize states if not provided
+            h = torch.zeros((input_.size(0), self.hidden_size)).cuda()
+            
+            c = torch.zeros((input_.size(0), self.hidden_size)).cuda()
+        else:
+            h, c = state # split state vector into hidden/cell states
+        
+        input_cat = torch.cat([input_, h], dim=1) # concatenate input and last hidden state (for faster computation?)
+    
+        c_logsig = self.bn_ih_logsig(self.w_ih(input_cat))
+        
+        if self.bias_ih is not None: # add bias if available
+            c_logsig += self.bias_ch.repeat(1, 2)
+            
+        c_h = self.bn_hh(self.w_hh(h))
+    
+        if self.bias_hh is not None: # add bias if available
+            c_h += self.bias_hh.repeat(1, 2)
+        
+        if self.cuda_device == -1: # use CUDA if set up
+            c = c.float()
+            
+            c_logsig = c_logsig.float()
+    
+        i_h, f_h = (c_h[:, :self.hidden_size], c_h[:, self.hidden_    size:])
+        
+        i_c, f_c = (c_logsig[:, :self.hidden_size], c_logsig[:, self.hidden_size:])
+    
+        i = torch.sigmoid(i_h + i_c) # input gate
+     
+        f = torch.sigmoid(f_h + f_c - self.bias_ih[self.hidden_size:])
+    
+        h = i * c_logsig[:, :self.hidden_size] + f * h # new cell state
+    
+        o_lin = self.bn_ih(self.w_ih(torch.cat([input_, h], 1))) + self.bias_ih[:self.hidden_size] # hidden-to-hidden weight for output computation
+    
+        u_h = self.bn_hh(self.w_hh(h)) + self.bias_hh[:self.hidden_size] # recurrent weight for output computation
+        
+        o = torch.sigmoid(o_lin + u_h) # output gate
+    
+        new_state = [o * c.tanh(), f * c + i * self.c_tahn()] # compute new hidden and cell states
+        
+        return o * h.tanh(), new_state
+
+class LSTM(nn.Module):
+    """Implementation of LSTM proposed by Hochreiter and Schmidhuber in their paper."""
+    
+    def __init__(self, input_size, hidden_size, nb_lstm_layers=1, dropout_prob=0, bidirectional=False, gamma=True):
+        """Initialize params.
+        
+        Args:
+            input_size (int): number of input units
+            hidden_size (int): number of cells in the lstm
+            nb_lstm_layers (int): number of lstm layers in the network (default=1)
+            dropout_prob (float): fraction of the units to dropout (default=0)
+            bidirectional (bool): whether to use a birectional LSTM (default=False)
+        """
+        
+        super(LSTM, self).__init__() # initialize base class
+        self.input_size = input_size 
+        self.hidden_size = hidden_size
+        self.nb_lstm_layers = nb_lstm_layers
+        self.dropout_prob = dropout_prob
+        self.bidirectional = bidirectional
+        
+        if gamma == True: # intialize network parameters if not provided
+            self.cells = nn.ModuleList()
+            
+            if self.bidirectional == False: # create lstm layers 
+                for i in range(nb_lstm_layers):
+                    if i == 0: 
+                        cell = LSTMCell(input_size, hidden_size)
+                    
+                    else:
+                        cell = LSTMCell(hidden_size, hidden_size)
+            
+                    self.cells.append(cell)
+                    
+            if self.bidirectional == True: # create lstm layers for bidirectional network 
+                for i in range(nb_lstm_layers):
+                    if i == 0:
+                        cell = LSTMCell(input_size, hidden_size)
+        
+                        cell_reverse = LSTMCell(input_size, hidden_size) # use same initial params as forward pass
+            
+                    else:
+                        cell = LSTMCell(2*hidden_size, hidden_size) 
+             
+                        cell_reverse = LSTMCell(2*hidden_size, hidden_size) # use same initial params as forward pass
+        
+                    self.cells.append(cell)
+                    self.cells.append(cell_reverse)
+        
+            if dropout_prob > 0: # add dropout layer inbetween lstm layers
+                self.dropouts = [torch.nn.Dropout(p=dropout_prob)] * (nb_lstm_layers - 1)
+            
+        else: # initialize network parameters if provided
+            self.cells = nn.ModuleList()
+        
+            if self.bidirectional == False:
+                for i in range(nb_lstm_layers):
+                    if i == 0: 
+                        cell = LSTMCell(input_size, hidden_size)
+            
+                    else:
+                        cell = LSTMCell(hidden_size, hidden_size)
+        
+                    self.cells.append(cell)
+    
+            if self.bidirectional == True:
+                for i in range(nb_lstm_layers):
+                    if i == 0:
+                        cell = LSTMCell(input_size, hidden_size)
+        
+                        cell_reverse = LSTMCell(input_size, hidden_size) # use same initial params as forward pass
+            
+                    else:
+                        cell = LSTMCell(2*hidden_size, hidden_size) 
+             
+                        cell_reverse = LSTMCell(2*hidden_size, hidden_size) # use same initial params as forward pass
+        
+                    self.cells.append(cell)
+                    self.cells.append(cell_reverse)
+    
+            if dropout_prob > 0: # add dropout layer inbetween lstm layers
+                self.dropouts = [torch.nn.Dropout(p=dropout_prob)] * (nb_lstm_layers - 1)
+        
+        self.reset_parameters() # initialize model weights
+    
+    def reset_parameters(self):
+        for cell in self.cells:
+            cell.reset_parameters() # use same initial params for all cells
+    
+    def forward(self, input):
+        """Implementation of LSTM - unrolled into 1 timestep."""
+        
+        output = []
+        batch_size = input.size(0)
+        seq_len = input.size(1)
+        
+        for step in range(seq_len):
+            states = [cell.zero_state(batch_size, cuda_r=True) for cell in self.cells] # initialize hidden and cell states as zeros
+            inner_states = [None] * len(self.cells) 
+    
+            for i in range(len(self.cells)):
+                if i == 0: # first layer input is the current timestep of all inputs
+                    lstm_input = input[:, step, :]
+                else: # subsequent layers take the hidden state as input for the next layer
+                    lstm_input = inner_states[i - 1][0]
+            
+                states[i], inner_state = self.cells[i](lstm_input, states[i])
+    
+                if i > 0 and (self.bidirectional == True): # concatenate forward and backward hidden state for all but last layer output 
+                    lstm_output = torch.cat([inner_state[0], inner_states[i-1][2]], dim=1) # forward, backward
+    
+                elif i > 0: # use forward pass for output if not bidirectional
+                    lstm_output = inner_state[0]
+                
+                else: # use only forward pass for first layer if using bidirectional
+                    lstm_output = torch.cat([inner_state[0], inner_states[-1][2]], dim=1) # concatenate fwd, bkwd
+    
+                if dropout_prob > 0 and i < self.nb_lstm_layers - 1: # apply dropout to the output of all but the last layer
+                    lstm_output = self.dropouts[i](lstm_output)
+                
+                inner_states[i] = inner_state
+            
+            output.append(inner_states[-1][0]) # forward hidden state of final cell to get outputs 
+        
+        output = torch.stack([o.unsqueeze(1) for o in output], dim=1) # reshape the output into (batch, seq_len, feat_dim)
+        return output 
+
+
+--------------------------------------------------------------------------------
+user_proxy (to chatbot):
+
+
+
+--------------------------------------------------------------------------------
+chatbot (to user_proxy):
+
+    
+    def trainable_parameters(self):
+        """Returns an iterator over trainable parameters."""
+        
+        params = chain(*[cell.trainable_parameters() for cell in self.cells]) # trainable params of lstm cells 
+            
+        return params
+
+--------------------------------------------------------------------------------
+user_proxy (to chatbot):
+
+
+
+--------------------------------------------------------------------------------
+chatbot (to user_proxy):
+
+
+
+
+--------------------------------------------------------------------------------
+user_proxy (to chatbot):
+
+
+
+--------------------------------------------------------------------------------
+chatbot (to user_proxy):
+
+
+
+--------------------------------------------------------------------------------
+user_proxy (to chatbot):
+
+
+
+--------------------------------------------------------------------------------
+chatbot (to user_proxy):
+
+
+
+--------------------------------------------------------------------------------
+user_proxy (to chatbot):
+
+
+
+--------------------------------------------------------------------------------
+chatbot (to user_proxy):
+
+
+
+--------------------------------------------------------------------------------
+user_proxy (to chatbot):
+
+
+
+--------------------------------------------------------------------------------
+chatbot (to user_proxy):
+
+
+
+--------------------------------------------------------------------------------
+user_proxy (to chatbot):
+
+
+
+--------------------------------------------------------------------------------
+chatbot (to user_proxy):
+
+    
+
+--------------------------------------------------------------------------------
+user_proxy (to chatbot):
+
+
+
+--------------------------------------------------------------------------------
+chatbot (to user_proxy):
+
+
+
+    def parameters(self):
+        """Returns an iterator over all parameters."""
+        
+        params = chain(*[cell.parameters() for cell in self.cells]) # params of lstm cells
+     
+
+--------------------------------------------------------------------------------

@@ -1,0 +1,145 @@
+-----
+
+Llama2_7b_Chat
+
+2024-03-03
+
+Iteration 1
+
+-----
+
+user_proxy (to chatbot):
+
+Draw two agents chatting with each other with an example dialog. Don't add plt.show().
+
+--------------------------------------------------------------------------------
+chatbot (to user_proxy):
+
+
+TERMINATE. Here is an example of two agents, 'Agent 1' and 'Agent 2', chatting with each other:
+
+Agent 1: Hi there! How are you today?
+
+Agent 2: I'm doing well, thanks for asking! How about you?
+
+Agent 1: I'm good too. It's nice to chat with you.
+
+Agent 2: Yes, same here. So, what brings you here today?
+
+Agent 1: Just browsing the internet and found this interesting conversation topic.
+
+Agent 2: Ah, cool! I'm here to learn more about machine learning.
+
+Agent 1: Oh, really? I'm curious about it too. Do you have any projects in mind?
+
+Agent 2: Yes, I'm actually working on a project that involves using neural networks to analyze medical images.
+
+Agent 1: Wow, that sounds fascinating! I'm sure you're making great progress.
+
+Agent 2: Thanks! Yeah, it's been an interesting journey so far.
+
+Agent 1: Well, it was nice chatting with you! Maybe we'll talk again sometime.
+
+Agent 2: Definitely! It was good talking to you too.
+
+--------------------------------------------------------------------------------
+user_proxy (to chatbot):
+
+
+
+--------------------------------------------------------------------------------
+chatbot (to user_proxy):
+
+
+
+--------------------------------------------------------------------------------
+user_proxy (to chatbot):
+
+
+
+--------------------------------------------------------------------------------
+chatbot (to user_proxy):
+
+
+
+--------------------------------------------------------------------------------
+user_proxy (to chatbot):
+
+
+
+--------------------------------------------------------------------------------
+chatbot (to user_proxy):
+
+
+
+--------------------------------------------------------------------------------
+user_proxy (to chatbot):
+
+
+
+--------------------------------------------------------------------------------
+chatbot (to user_proxy):
+
+
+
+--------------------------------------------------------------------------------
+user_proxy (to chatbot):
+
+
+
+--------------------------------------------------------------------------------
+chatbot (to user_proxy):
+
+
+
+--------------------------------------------------------------------------------
+user_proxy (to chatbot):
+
+
+
+--------------------------------------------------------------------------------
+chatbot (to user_proxy):
+
+
+
+--------------------------------------------------------------------------------
+user_proxy (to chatbot):
+
+
+
+--------------------------------------------------------------------------------
+chatbot (to user_proxy):
+
+
+
+--------------------------------------------------------------------------------
+user_proxy (to chatbot):
+
+
+
+--------------------------------------------------------------------------------
+chatbot (to user_proxy):
+
+
+
+--------------------------------------------------------------------------------
+user_proxy (to chatbot):
+
+
+
+--------------------------------------------------------------------------------
+chatbot (to user_proxy):
+
+
+
+--------------------------------------------------------------------------------
+user_proxy (to chatbot):
+
+
+
+--------------------------------------------------------------------------------
+chatbot (to user_proxy):
+
+
+
+--------------------------------------------------------------------------------
