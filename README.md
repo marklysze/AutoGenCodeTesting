@@ -76,3 +76,37 @@ StarCoder2 3b |  |  |
 StarCoder2 7b |  |  |
 StarCoder2 15b |  |  |
 Yi-34b Chat | :x: | :x: | Old retired library use
+
+#### Function Calling
+Prompt for LLM: **Draw two agents chatting with each other with an example dialog. Don't add plt.show().**
+
+Code should generate: Python code that creates a diagram with two agents on it (E.g. two circles and speech bubbles)
+
+See the [results](results) folder for code outputs.
+
+See what [OpenAI's API generated](https://github.com/microsoft/autogen/blob/main/notebook/agentchat_function_call.ipynb).
+
+**Model** | **Run 1** | **Run 2** | **Notes**
+---|---|---|---|
+CodeLlama 7b Python | :x: | :x: |
+CodeLlama 13b Python | :x: | :x: |
+CodeLlama 34b Instruct | :x: | :large_orange_diamond: | Coded an animation with speech bubbles, bug in function parameters, once fixed produced animated text.
+CodeLlama 34b Python | :x: | :x: |
+DeepSeek Coder 6.7b | :x: | :x: | Produced a chat conversation
+Llama2 7b Chat | :x: | :x: | Produced a chat conversation
+Llama2 13b Chat | :x: | :x: | Produced a chat conversation
+Mistral 7b 0.2 Instruct | :x: | :x: | Produced a chat conversation
+Mixtral 8x7b Q4 | :x: | :x: | Produced a chat conversation
+Mixtral 8x7b Q5 | :x: | :x: | Produced a chat conversation
+Neural Chat 7b Chat | :x: | :x: | Tried to create visual animation but failed and ended up producing a chat conversation
+Nexus Raven | :x: | :x: | 
+OpenHermes 7b Mistral | :x: | :x: | Produced a chat conversation
+Orca2 13b | :x: | :x: |
+Phi-2 | :x: | :x: |
+Phind-CodeLlama34b | :large_orange_diamond: | :large_orange_diamond: | Valid visual generation of two agents' text chat (no imagery just text on a figure)
+Qwen 14b | :x: | :x: | Produced a chat conversation
+Solar 10.7b Instruct | :x: | :x: | Produced a chat conversation
+StarCoder2 3b |  |  |
+StarCoder2 7b |  |  |
+StarCoder2 15b |  |  |
+Yi-34b Chat | :large_orange_diamond: | :large_orange_diamond: | Close to a valid drawing, outdated libraries
