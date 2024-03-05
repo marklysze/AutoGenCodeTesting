@@ -8,9 +8,9 @@ Two tests so far - Fibonacci function and stock market chart. More to come.
 [Basis for testing code here](https://github.com/microsoft/autogen/blob/tutorial/website/docs/getting-started/code-executors.ipynb)
 
 #### Fibonacci
-Prompt for LLM: **Write Python code to calculate the 14th Fibonacci number.**
+Prompt for LLM: `Write Python code to calculate the 14th Fibonacci number,`
 
-Code should generate: **233** or **377**
+Code should generate: `233` or `377`
 
 Note: Fn for n = 14 is 377. If we start at n = 0 the 14th number is 233, so n = 14 is actually the 15th Fibonacci number in the sequence. Therefore, some LLM's code will generate 233 and some 377. We will accept both as the question is ambiguous.
 
@@ -49,7 +49,7 @@ StarCoder2 15b |  |  |
 Yi-34b Chat | :white_check_mark: | :white_check_mark: |
 
 #### Stock market chart
-Prompt for LLM: **Today is {today}. Write Python code to plot TSLA's and META's stock prices YTD.**
+Prompt for LLM: `Today is {today}. Write Python code to plot TSLA's and META's stock prices YTD.`
 
 Code should generate: An image for each stock OR an image including both stocks. If it tries to display it (Jupyter notebook) it's a bonus (but doesn't affect whether it's correct or not).
 
@@ -89,7 +89,7 @@ StarCoder2 15b |  |  |
 Yi-34b Chat | :x: | :x: | Old retired library use
 
 #### Function Calling
-Prompt for LLM: **Draw two agents chatting with each other with an example dialog. Don't add plt.show().**
+Prompt for LLM: `Draw two agents chatting with each other with an example dialog. Don't add plt.show().`
 
 Code should generate: Python code that creates a diagram with two agents on it (E.g. two circles and speech bubbles)
 
@@ -129,20 +129,19 @@ StarCoder2 15b |  |  |
 Yi-34b Chat | :large_orange_diamond: | :large_orange_diamond: | Close to a valid drawing, outdated libraries
 
 ---
----
 
-### Non-coding tests
+## Non-coding tests
 
 #### Termination word
 Background: Tests the ability for an LLM to incorporate a termination word into their response.
 
-Scenario: Uses a Group Chat with a Story_writer and a Product_manager. Story_writer is to write some story ideas and the Product_manager is to review and terminate when satisified by outputting a specific word (e.g. "TERMINATE", "BAZINGA", etc.).
+Scenario: A Group Chat with a Story_writer and a Product_manager. Story_writer is to write some story ideas and the Product_manager is to review and terminate when satisified by outputting a specific word (e.g. "TERMINATE", "BAZINGA", etc.).
 
-Store_writer's system message: **An ideas person, loves coming up with ideas for kids books.**
+Store_writer's system message: `An ideas person, loves coming up with ideas for kids books.`
 
-Product_manager's system message: **Great in evaluating story ideas from your writers and determining whether they would be unique and interesting for kids. Reply with suggested improvements if they aren't good enough, otherwise reply `{termination_word}` at the end when you're satisfied there's one good story idea.**
+Product_manager's system message: `Great in evaluating story ideas from your writers and determining whether they would be unique and interesting for kids. Reply with suggested improvements if they aren't good enough, otherwise reply '{termination_word}' at the end when you're satisfied there's one good story idea.`
 
-Prompt for the chat manager: **Come up with 3 story ideas for Grade 3 kids.**
+Prompt for the chat manager: `Come up with 3 story ideas for Grade 3 kids.`
 
 See the [results](results) folder for code outputs.
 
