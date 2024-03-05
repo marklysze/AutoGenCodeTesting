@@ -8,7 +8,7 @@ Two tests so far - Fibonacci function and stock market chart. More to come.
 [Basis for testing code here](https://github.com/microsoft/autogen/blob/tutorial/website/docs/getting-started/code-executors.ipynb)
 
 #### Fibonacci
-Prompt for LLM: `Write Python code to calculate the 14th Fibonacci number,`
+Prompt for LLM: `Write Python code to calculate the 14th Fibonacci number.`
 
 Code should generate: `233` or `377`
 
