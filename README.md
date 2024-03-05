@@ -18,6 +18,11 @@ See the [results](results) folder for code outputs.
 
 See what [ChatGPT 3.5 generated](results/Fib_ChatGPT_3.5.txt) (which output 377).
 
+| | Key |
+| --- | --- |
+| :white_check_mark: | Valid code and formatting |
+| :x: | Invalid code, formatting, or didn't understand task |
+
 **Model** | **Run 1** | **Run 2** | **Notes**
 ---|---|---|---|
 CodeLlama 7b Python | :x: | :x: |
@@ -52,6 +57,12 @@ See the [results](results) folder for code outputs.
 
 See what [ChatGPT 3.5 generated](results/Stocks_ChatGPT_3.5.txt) (which was correct).
 
+| | Key |
+| --- | --- |
+| :white_check_mark: | Valid code and formatting |
+| :large_orange_diamond: | Almost correct |
+| :x: | Invalid code, formatting, or didn't understand task |
+
 **Model** | **Run 1** | **Run 2** | **Notes**
 ---|---|---|---|
 CodeLlama 7b Python | :x: | :x: |
@@ -85,6 +96,12 @@ Code should generate: Python code that creates a diagram with two agents on it (
 See the [results](results) folder for code outputs.
 
 See what [OpenAI's API generated](https://github.com/microsoft/autogen/blob/main/notebook/agentchat_function_call.ipynb).
+
+| | Key |
+| --- | --- |
+| :white_check_mark: | Valid code and formatting |
+| :large_orange_diamond: | Almost correct |
+| :x: | Invalid code, formatting, or didn't understand task |
 
 **Model** | **Run 1** | **Run 2** | **Notes**
 ---|---|---|---|
@@ -134,7 +151,7 @@ Note 2: Some LLMs included the terminating word but the quality of the full resp
 
 | | Key |
 | --- | --- |
-| :white_check_mark: | Output termination word correctly |
+| :white_check_mark: | Included termination word correctly |
 | :x: | Performed task, didn't output termination word |
 | :thumbsdown: | Didn't understand/participate in task |
 
