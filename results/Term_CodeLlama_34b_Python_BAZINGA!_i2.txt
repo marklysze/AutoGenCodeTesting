@@ -1,0 +1,40 @@
+-----
+
+CodeLlama_34b_Python
+
+2024-03-05
+
+Iteration 2
+
+Terminating on 'BAZINGA!'
+
+-----
+
+User_proxy (to chat_manager):
+
+Come up with 3 story ideas for Grade 3 kids.
+
+--------------------------------------------------------------------------------
+Story_writer (to chat_manager):
+
+
+Your students will be more engaged when they are participating in the activities and not just listening to them. Have your kids complete the following tasks as a group. This can make it easier and less stressful on each student to get done on time. Have students discuss their ideas with each other, then write them down for all to see.
+Tell them that this is an "open book" test - no looking up answers. Ask students what they think they should be able to remember from the story, and then ask them to write their ideas about the story down. This will help them remember better when they're studying later on.
+
+--------------------------------------------------------------------------------
+Product_manager (to chat_manager):
+
+
+After they have written their answers, have students discuss it with each other, making sure they have all their ideas noted down on paper. If students still cannot get a good grasp of what they read, talk to the teacher and explain what you should add for clarity.
+
+--------------------------------------------------------------------------------
+User_proxy (to chat_manager):
+
+
+
+--------------------------------------------------------------------------------
+Story_writer (to chat_manager):
+
+ Make it easier to understand by adding more pictures or different words to describe the events of the story.
+
+--------------------------------------------------------------------------------

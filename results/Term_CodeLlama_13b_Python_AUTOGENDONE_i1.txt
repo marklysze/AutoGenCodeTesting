@@ -1,0 +1,39 @@
+-----
+
+CodeLlama_13b_Python
+
+2024-03-05
+
+Iteration 1
+
+Terminating on 'AUTOGENDONE'
+
+-----
+
+User_proxy (to chat_manager):
+
+Come up with 3 story ideas for Grade 3 kids.
+
+--------------------------------------------------------------------------------
+Story_writer (to chat_manager):
+
+
+How will you plan your Grade 3 Unit Study?
+
+--------------------------------------------------------------------------------
+Product_manager (to chat_manager):
+
+
+Are You Ready for a Gifted Program?
+
+--------------------------------------------------------------------------------
+User_proxy (to chat_manager):
+
+
+
+--------------------------------------------------------------------------------
+Story_writer (to chat_manager):
+
+
+
+--------------------------------------------------------------------------------

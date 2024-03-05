@@ -1,0 +1,57 @@
+-----
+
+CodeLlama_7b_Python
+
+2024-03-05
+
+Iteration 1
+
+Terminating on 'TERMINATE'
+
+-----
+
+User_proxy (to chat_manager):
+
+Come up with 3 story ideas for Grade 3 kids.
+
+--------------------------------------------------------------------------------
+Story_writer (to chat_manager):
+
+ヴィンティージュ (Vintage) to enjoy together.
+"My Favorite Story" is the name of my book!
+The students and I created the first page of a book today that will eventually be used to practice beginning with capital letters. This first page had to have a title, author’s name, date of publication, illustrator’s name and a caption. When it came time for the students to make their own titles they wrote the words of this story as part of their writing workshop assignment.
+
+--------------------------------------------------------------------------------
+Product_manager (to chat_manager):
+
+
+The book that I used was a series of 30 minibooks called The Magic Garden (Kodansha). In addition, we took some pictures of the book and then displayed them in class for students to look at. It was very helpful for me to be able to see what the book looked like before the students began to create it themselves.
+I decided that I needed 30 different words for the students’ writing exercises because the amount of detail each page had in them was becoming too much. It made sense to break up the pages into smaller pieces, which they could easily memorize and write on their own if necessary. So after the first week with the book we decided to divide it into 30 separate “books”. The students began by writing about the title of a story that had happened to them. Then we divided those books up into 3 different categories: stories written by girls, stories written by boys and stories written from both points of view.
+For example, when they were on pages 1-10, which was their first category (Girls) their teacher had them write about the title of a story that happened to a girl in first grade. I wrote all these words down before hand so they could use it later as part of an activity. I also used some of these words when helping them write their own stories because they were able to re-write their story and make it more interesting with each new word that the teacher or students would give them.
+For example, “Ten year old Mary” became “Three-year-old Emily”, as her teacher was trying to help her write a title for her book.
+So for instance, if one of my students wrote this: "My cat jumped up on me!" and I said "Write more detail about your cat’s behavior." she might turn it into "My kitty danced and jumped on my leg as she saw a mouse in the hallway".
+After the first week, our teacher asked them to think of a story that happened when they were in third grade. So I had them create new pictures for their book about a day in third grade. Each page would have a title, some detail and a picture. It was an interesting activity because even if the students already had 30 words written down or typed out on paper, they had to write as many details and titles as they could come up with!
+After two weeks of practicing how to create these new books we got ready for our story writing workshop. We did this at school, but I also have a private class that I run once a week. It’s always fun when I get my students together to practice what they’ve been learning in their writing sessions!
+For my students, today was the first day of our “Writing Workshop”.
+We wrote titles for stories that had happened to us and then we wrote them down with 30 words. Then on Monday we will make a book out of these stories. We used The Magic Garden to get ready because it is made up of thirty different books (all written about stories that kids would have heard in grade school).
+My students were very excited today. They’ve never done anything like this before and they are really into it! They wrote down all 30 words with no problem, but I was a little worried because the writing exercises we’d been doing (in preparation for our workshop) had become very difficult and were now too big of an activity for them to do independently.
+But they did well today in their first “story workshop”! The teacher and I used The Magic Garden as a model which is made up of 30 separate books, each about one story that happened to the student during grade school. Students took pictures of the pages so we could look at them later in our workshops. We looked at the pictures on Sunday after I had the students memorize all their 30 words and they did well. So today’s goal was to practice how to write titles with details and then create books out of them.
+It took about an hour and a half for my first “story workshop”. It started off slow but we got much better at it as the day went on. Today is just one of many more story writing sessions that the teacher and I will have together this year.
+
+--------------------------------------------------------------------------------
+User_proxy (to chat_manager):
+
+
+
+--------------------------------------------------------------------------------
+Story_writer (to chat_manager):
+
+
+I’ve been doing a lot of research into how to teach young students how to write. I’d like them to be able to write their own stories because it’s hard for me to do it in English with so few words. I found out about The Magic Garden and am really interested in using that as a resource for my writing exercises!
+In the past, when I’ve taught a “writing” class, students would create an outline of what they wanted to write but couldn’t seem to find the right words. They were very frustrated because they wanted so badly to write something but weren’t able to make it happen. So I decided to use The Magic Garden as a starting point for my writing workshops.
+The students and I went over a few things with the book. Then we had the students create a title for their story that happened in first grade. Then we wrote down 30 words about those titles and what made them excited. Next, we took some pictures of our new books and then displayed all of them on the wall as a way to help the students remember these new words. We also used some of The Magic Garden’s words in their writing exercises which was fun for me to see!
+Students write titles for stories that have happened to them in first grade.
+They write 30 words about the title and what makes it interesting. Then we practice our writing skills by making books out of these titles.
+Students get to be very creative with their books because The Magic Garden has many different story categories and the students can choose from one that interests them. They can also use some of The Magic Garden’s pictures to add some color to their books!
+
+--------------------------------------------------------------------------------

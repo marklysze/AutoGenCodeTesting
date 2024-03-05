@@ -1,0 +1,63 @@
+-----
+
+CodeLlama_7b_Python
+
+2024-03-05
+
+Iteration 2
+
+Terminating on 'BAZINGA!'
+
+-----
+
+User_proxy (to chat_manager):
+
+Come up with 3 story ideas for Grade 3 kids.
+
+--------------------------------------------------------------------------------
+Story_writer (to chat_manager):
+
+寺壇是什麼樣子?
+
+--------------------------------------------------------------------------------
+Product_manager (to chat_manager):
+
+
+1. What do you like about temple?
+2. Why is temple important to you?
+3. What are the benefits of temple for your community and country?
+留意上面有提到的專質性，不要寫出去太多。這個小孩仔的情感沒有幾多可用的字眼，所以需要限制下把話單一、聰明、溫柔一些。
+Writing Prompt: 3 Stories for Grade 3 kids.
+1. What do you like about temple?
+2. Why is temple important to you?
+3. What are the benefits of temple for your community and country?
+These storytelling activities encourage students to express their ideas in a clear, concise manner and also engage them in writing about their own lives. Students can write on topics such as school or homework, family and friends, holidays or pets.
+Teachers have the choice of using these activities for one class period (at a time) or distributing them among multiple classes and letting the students select the topic they are most interested in writing about.
+
+--------------------------------------------------------------------------------
+User_proxy (to chat_manager):
+
+
+
+--------------------------------------------------------------------------------
+Story_writer (to chat_manager):
+
+ Students can write on their own and then present to the class. They may also be able to share stories with peers during centers or group discussions, which provide an opportunity for additional peer feedback.
+The stories students create are intended to showcase the unique, specific points of view of each student. Therefore, while it is important that students express themselves through their writing, it is equally as important that they not share someone else’s story with minimal change. As a teacher, it is my responsibility to ensure that my students’ work accurately reflects themself so that the writing becomes meaningful and engaging. This includes modeling good spelling and grammar skills while encouraging the use of precise vocabulary.
+1. Use specific details – For example “She was wearing a purple sweater” or “He has black hair”.
+2. Do not plagiarize – There is no need to use the exact words, but students must credit their source.
+3. Include a narrative – This means that all of the facts are incorporated into an actual story. For example, “This happened today” and “Tommy got his homework done.”.
+4. Do not oversimplify – The meaning should be clear and make sense to the reader. Students should write about specific details instead of using general terms.
+1. Expand on the topic – A writer should always include more than what they think is needed for the story, but should not use excessive words or detail.
+2. Show that you are writing an actual story – Make sure students can easily tell if a piece of writing is narrative or not, for example by using “I”, “me”, “my” and other first person pronouns in their story.
+3. Be concise – If students try to write too much detail, their sentence length will be too long and the reader may feel overwhelmed. Instead of writing in paragraphs with many sentences, make sure each piece is only one or two sentences. This also gives teachers an idea as to what each student wrote about so that they can differentiate them during discussions and peer feedback sessions.
+If students have specific questions after completing the stories, provide additional guidance as needed. Teachers may want to encourage students to incorporate details such as dialogue or actions into their writing in order to add depth and make the narratives more engaging.
+1. Writing about the same topic – Students may write about an activity or event from a different class period (or day). For example, students can write stories based on school themes such as “Safety”, “Sports”, “School Picnic” and so on. However, each student should only write once on a given topic during the writing process in order to ensure that they do not plagiarize from another student’s work.
+2. Using specific details – A writer should always use as much detail about his or her life as possible to make their stories more realistic and engaging. Students should try to include specific details such as “She was wearing a purple sweater” instead of simply using the words, “Purple” or “Sweater”.
+3. Grammar – Students should be able to write clearly and correctly, with strong use of proper nouns, verbs, adjectives and other grammar rules.
+4. Inclusion of facts – It is important that students use specific details from their lives when writing about them in order for the writing to make sense. If a student writes “He was playing soccer” while describing his homework, it may not be clear what he or she means.
+5. Content – Students should write about things they know and are interested in so that each person’s story can be meaningful. It is also important for students to consider the reader when writing their stories. This includes ensuring that there is sufficient information, such as who the narrator was, what setting it took place in (if any) or how long the student was away from his or her classmates.
+This activity is intended to be used in conjunction with the other writing activities for a given grade level. Students can read each other’s stories and then use peer feedback to give their own story an additional “review” of its validity and relevance to their personal lives. If a student has any specific questions, students may ask another student who is writing about that particular topic during this period or they may simply consult the teacher for clarification.
+This activity can be used with a partner if there are multiple students in each group. Alternatively, students can write a story on their own and then present to the class as well as giving peer feedback throughout the writing process.
+
+--------------------------------------------------------------------------------

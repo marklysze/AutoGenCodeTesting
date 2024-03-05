@@ -1,0 +1,52 @@
+-----
+
+CodeLlama_34b_Python
+
+2024-03-05
+
+Iteration 2
+
+Terminating on 'TERMINATE'
+
+-----
+
+User_proxy (to chat_manager):
+
+Come up with 3 story ideas for Grade 3 kids.
+
+--------------------------------------------------------------------------------
+Story_writer (to chat_manager):
+
+
+Here are three exciting and creative story ideas to kick off your teaching adventures with your students this year. They can help you get the ball rolling when you’re brainstorming with your students or they can give them a starting point as they write their own stories.
+In a classroom, there are many different personalities and all kinds of people. Include some of those different personalities in your story ideas and watch what your kids come up with!
+Who could you choose to be in each story?
+What do you think the setting might look like for each story?
+How will the main character solve their problem in the end?
+In a classroom, there are many different jobs that need to get done. Your students can take on some of those jobs themselves and create fun stories!
+Who is going to be doing this job in your story?
+What will they learn while they do it?
+How will they use what they’ve learned about themselves as they get closer to the solution or end of their story?
+In a classroom, there are many different people. Everyone has a different background and history and that history can influence how they act in the present. Let your students explore this concept through writing!
+Where did this character grow up?
+How did their family help shape them as a person?
+What will be their obstacle in this story?
+
+--------------------------------------------------------------------------------
+Product_manager (to chat_manager):
+
+
+In what ways do they overcome this obstacle and become a better person in the end?
+
+--------------------------------------------------------------------------------
+User_proxy (to chat_manager):
+
+
+
+--------------------------------------------------------------------------------
+Story_writer (to chat_manager):
+
+
+Whatever topic you decide to go with, don’t forget that each student is unique. Allow your students to come up with their own characters based on themselves and include some of those other fun personalities in your classroom in order to make it a rich and unique environment for your story ideas.
+
+--------------------------------------------------------------------------------

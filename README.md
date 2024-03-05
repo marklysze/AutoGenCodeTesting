@@ -110,3 +110,57 @@ StarCoder2 3b |  |  |
 StarCoder2 7b |  |  |
 StarCoder2 15b |  |  |
 Yi-34b Chat | :large_orange_diamond: | :large_orange_diamond: | Close to a valid drawing, outdated libraries
+
+---
+---
+
+### Non-coding tests
+
+#### Termination word
+Background: Tests the ability for an LLM to incorporate a termination word into their response.
+
+Scenario: Uses a Group Chat with a Story_writer and a Product_manager. Story_writer is to write some story ideas and the Product_manager is to review and terminate when satisified by outputting a specific word (e.g. "TERMINATE", "BAZINGA", etc.).
+
+Store_writer's system message: **An ideas person, loves coming up with ideas for kids books.**
+
+Product_manager's system message: **Great in evaluating story ideas from your writers and determining whether they would be unique and interesting for kids. Reply with suggested improvements if they aren't good enough, otherwise reply `{termination_word}` at the end when you're satisfied there's one good story idea.**
+
+Prompt for the chat manager: **Come up with 3 story ideas for Grade 3 kids.**
+
+See the [results](results) folder for code outputs.
+
+Note 1: `TERMINATE` is the standard used by AutoGen.
+Note 2: Some LLMs included the terminating word but the quality of the full response was not perfect.
+
+| | Key |
+| --- | --- |
+| :white_check_mark: | Output termination word correctly |
+| :x: | Performed task, didn't output termination word |
+| :thumbsdown: | Didn't understand/participate in task |
+
+There were two runs for each word.
+
+**Model** | **TERMINATE** | **ACBDEGFHIKJL** | **AUTOGENDONE** | **BAZINGA!** | **DONESKI** | **Notes**
+---|---|---|---|
+CodeLlama 7b Python | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | |
+CodeLlama 13b Python | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | |
+CodeLlama 34b Instruct | :white_check_mark: :white_check_mark: | :x: :white_check_mark: | :x: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :x: | |
+CodeLlama 34b Python | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | |
+DeepSeek Coder 6.7b | :x: :thumbsdown: | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | |
+Llama2 7b Chat | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | |
+Llama2 13b Chat | :x: :white_check_mark: | :x: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | |
+Mistral 7b 0.2 Instruct | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | |
+Mixtral 8x7b Q4 | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | |
+Mixtral 8x7b Q5 | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | |
+Neural Chat 7b Chat | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | |
+Nexus Raven | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | Tried to call a python function to create the stories |
+OpenHermes 7b Mistral | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | |
+Orca2 13b | :white_check_mark: :white_check_mark: | :x: :white_check_mark: | :x: :white_check_mark: | :x: :white_check_mark: | :white_check_mark: :white_check_mark: | |
+Phi-2 | :thumbsdown: :thumbsdown: | :thumbsdown: :x: | :x: :x: | :x: :x: | :x: :thumbsdown: | |
+Phind-CodeLlama34b | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | |
+Qwen 14b | :x: :x: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | |
+Solar 10.7b Instruct | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | |
+StarCoder2 3b | | | | | | |
+StarCoder2 7b | | | | | | |
+StarCoder2 15b | | | | | | |
+Yi-34b Chat | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :white_check_mark: | |

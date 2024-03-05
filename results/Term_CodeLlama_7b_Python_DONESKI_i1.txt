@@ -1,0 +1,45 @@
+-----
+
+CodeLlama_7b_Python
+
+2024-03-05
+
+Iteration 1
+
+Terminating on 'DONESKI'
+
+-----
+
+User_proxy (to chat_manager):
+
+Come up with 3 story ideas for Grade 3 kids.
+
+--------------------------------------------------------------------------------
+Story_writer (to chat_manager):
+
+县培养中学生努力脱贫攀关系 学校精神传播文化建设实践
+Grade 6-7 students brainstorm for 10 story ideas and write them on slips of paper. The teacher distributes the paper slips, and students move to different stations.
+
+--------------------------------------------------------------------------------
+Product_manager (to chat_manager):
+
+ Students are encouraged to think up some new ways to express their creativity.
+Students should be given at least two minutes to talk about three story ideas they have thought up for Grade 6-7 kids. They can do this while a classmate is working on the same activity, or in small groups. Students are also encouraged to think of any other kinds of stories they would like to write and make up 10 slips for each student.
+Students should be given at least two minutes to talk about three story ideas they have thought up for Grade 6-7 kids. They can do this while a classmate is working on the same activity, or in small groups. Students are also encouraged to think of any other kinds of stories they would like to write and make up 10 slips for each student. If the teacher has given students three minutes per story idea to talk about their ideas, then she should tell them how to divide the 2-minute time slot between talking about their stories and writing the stories on their paper slips. Students may need to stop their own stories to write out a story idea on a slip of paper, or they may simply take turns with another student.
+After each student has finished telling her 3 story ideas and written them down, the teacher should give each child two minutes to talk about at least one of those 10 story ideas and write it on the appropriate paper clip. After that, students can switch, and continue giving time outs and writing stories until all three story ideas have been told and all the stories are written.
+After each student has finished telling her 3 story ideas and written them down, the teacher should give each child two minutes to talk about at least one of those 10 story ideas and write it on the appropriate paper clip. After that, students can switch, and continue giving time outs and writing stories until all three story ideas have been told and all the stories are written. If the teacher has assigned three minutes per story idea in each 2-minute time slot, then she will need to tell her class which student to stop talking at each stage of the activity so that time is not wasted on students who do not feel like continuing with a particular idea.
+Students should be given at least two minutes to talk about three story ideas they have thought up for Grade 6-7 kids. They can do this while a classmate is working on the same activity, or in small groups. Students are also encouraged to think of any other kinds of stories they would like to write and make up 10 slips for each student. If students have been given three minutes per story idea in the 2-minute time slots, then she should tell them how to divide those 2 minutes between talking about their ideas and writing the stories on their paper clips.
+Students need at least two minutes to talk about their 3 story ideas that they have thought up for Grade 6-7 kids. They can do this while a classmate is working on the same activity, or in small groups. Students are also encouraged to think of any other kinds of stories they would like to write and make up 10 slips for each student. After students have finished telling their 3 story ideas and writing them down, the teacher should give each student two minutes to talk about at least one of those 10 story ideas and write it on a paper clip.
+Students need at least two minutes to talk about their 3 story ideas that they have thought up for Grade 6-7 kids. They can do this while a classmate is working on the same activity, or in small groups. Students are also encouraged to think of any other kinds of stories they would like to write and make up 10 slips for each student. After students have finished telling their 3 story ideas and writing them down, the teacher should give each student two minutes to talk about at least one of those 10 story ideas and write it on a paper clip. After that, she should tell them which students need to switch between talking and writing so that all three ideas are shared by every student.
+
+--------------------------------------------------------------------------------
+User_proxy (to chat_manager):
+
+
+
+--------------------------------------------------------------------------------
+Story_writer (to chat_manager):
+
+
+
+--------------------------------------------------------------------------------

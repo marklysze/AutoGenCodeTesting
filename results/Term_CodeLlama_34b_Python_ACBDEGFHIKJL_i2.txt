@@ -1,0 +1,40 @@
+-----
+
+CodeLlama_34b_Python
+
+2024-03-05
+
+Iteration 2
+
+Terminating on 'ACBDEGFHIKJL'
+
+-----
+
+User_proxy (to chat_manager):
+
+Come up with 3 story ideas for Grade 3 kids.
+
+--------------------------------------------------------------------------------
+Story_writer (to chat_manager):
+
+ These three story starters will make it easier for your child to complete a creative writing project in class.
+I like these ideas, they give a lot of flexibility and open ended questions. I’m going to try them out this year!
+Thank you so much! Love this idea. I have a third grade student with dyslexia who struggles with creative writing but he is very creative, just struggling with how to get his ideas onto paper. This will help me think about ways to structure the writing process to encourage him and also to challenge him. Thank you!
+Hi Karen! That’s a tough one and I can see why these starters may work for you, because of their open-ended nature. 🙂 You may need to experiment a bit with what works well and doesn’t work for your student. Good luck!
+
+--------------------------------------------------------------------------------
+Product_manager (to chat_manager):
+
+
+
+--------------------------------------------------------------------------------
+User_proxy (to chat_manager):
+
+
+
+--------------------------------------------------------------------------------
+Story_writer (to chat_manager):
+
+
+
+--------------------------------------------------------------------------------

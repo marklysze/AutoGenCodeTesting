@@ -1,0 +1,44 @@
+-----
+
+CodeLlama_13b_Python
+
+2024-03-05
+
+Iteration 1
+
+Terminating on 'ACBDEGFHIKJL'
+
+-----
+
+User_proxy (to chat_manager):
+
+Come up with 3 story ideas for Grade 3 kids.
+
+--------------------------------------------------------------------------------
+Story_writer (to chat_manager):
+
+
+Stories that take place in your classroom!
+I use stories to teach my students about the past, present and future.
+
+--------------------------------------------------------------------------------
+Product_manager (to chat_manager):
+
+ They also help me illustrate what the kids know already. What we do not know is a mystery and needs to be solved. We can never really understand everything there is to know because of our own experience but we can try. This makes learning more fun for us and easier on my part too!
+Here are a couple of ideas you can use in your classroom, you will need some basic supplies which you can borrow or purchase at your local craft store. The only thing that needs to be provided is the time to play along with these stories.
+It’s Halloween and Mr. Squiggles has gone missing! Can anyone help him find his way home? Let’s help him use his crayons to paint a picture of who he thinks he will see on his journey.
+The first day of school is just around the corner and you have your hands full trying to figure out what to do with all the paperwork and planning, well Mr. Squiggles has that covered! Let’s help him write down everything he needs to get ready for school.
+For more classroom story ideas, check out these 3 story prompts that are great for K-3 kids!
+If you have a different idea or would like to share your own stories of how you teach in the classroom please comment below and let me know what it is about! I’d love to read more.
+
+--------------------------------------------------------------------------------
+User_proxy (to chat_manager):
+
+
+
+--------------------------------------------------------------------------------
+Story_writer (to chat_manager):
+
+ Thanks!
+
+--------------------------------------------------------------------------------

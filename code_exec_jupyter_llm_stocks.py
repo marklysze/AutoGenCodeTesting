@@ -87,9 +87,9 @@ ollama_models = [
     {"model_name": "phind-codellama:34b-v2", "display_name" : "Phind_CodeLlama_34b_v2"},
     {"model_name": "qwen:14b-chat-q6_K", "display_name" : "Qwen_14b_Chat"},
     {"model_name": "solar:10.7b-instruct-v1-q5_K_M", "display_name" : "Solar_107b_Instruct"},
-    {"model_name": "starcoder2:3b", "display_name" : "StarCoder2_3b"},
-    {"model_name": "starcoder2:7b", "display_name" : "StarCoder2_7b"},
-    {"model_name": "starcoder2:15b", "display_name" : "StarCoder2_15b"},
+#    {"model_name": "starcoder2:3b", "display_name" : "StarCoder2_3b"},
+#    {"model_name": "starcoder2:7b", "display_name" : "StarCoder2_7b"},
+#    {"model_name": "starcoder2:15b", "display_name" : "StarCoder2_15b"},
     {"model_name": "yi:34b-chat-q4_K_M", "display_name" : "Yi_34b_Chat_Q4"},
 ]
 
