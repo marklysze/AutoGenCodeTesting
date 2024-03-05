@@ -141,7 +141,7 @@ Note 2: Some LLMs included the terminating word but the quality of the full resp
 There were two runs for each word.
 
 **Model** | **TERMINATE** | **ACBDEGFHIKJL** | **AUTOGENDONE** | **BAZINGA!** | **DONESKI** | **Notes**
----|---|---|---|
+---|---|---|---|---|---|---|
 CodeLlama 7b Python | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | |
 CodeLlama 13b Python | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | :thumbsdown: :thumbsdown: | |
 CodeLlama 34b Instruct | :white_check_mark: :white_check_mark: | :x: :white_check_mark: | :x: :white_check_mark: | :white_check_mark: :white_check_mark: | :white_check_mark: :x: | |
