@@ -4,6 +4,8 @@
 
 #### How to run
 
+IMPORTANT: Ensure you are using Ollama v0.1.29 or above (earlier models may hang with Mistral-based models)
+
 1. Install AutoGen (preferably in a virtual environment / dev container)
 
 2. Install [LiteLLM](https://github.com/BerriAI/litellm) and [Ollama](https://github.com/ollama/ollama)
