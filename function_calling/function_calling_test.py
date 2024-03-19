@@ -19,7 +19,10 @@ llm_config={
 #     "config_list": [{"model": model_name, "api_key": "NotRequired", "base_url": f"http://{network_address}:11434/v1"}], 
 
     # LiteLLM (supports function calling but may have Ollama function calling bug)
-    "config_list": [{"model": "litellmnotneeded", "api_key": "NotRequired", "base_url": f"http://{network_address}:8801"}], 
+#    "config_list": [{"model": "litellmnotneeded", "api_key": "NotRequired", "base_url": f"http://{network_address}:8801"}], 
+    
+    # Gorilla OpenFunctions
+    "config_list": [{"model": "gorilla-7b-hf-v1", "api_key": "EMPTY", "base_url": f"http://zanino.millennium.berkeley.edu:8000/v1"}],
 
     # Functionary (not tested)
 #    "config_list": [{"model": "litellmnotneeded", "api_key": "NotRequired", "base_url": f"http://{network_address}:8000/v1"}], 
