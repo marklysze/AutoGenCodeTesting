@@ -20,7 +20,7 @@ phi2 = {
     "cache_seed": None,  # Disable caching.
 }
 
-from autogen import ConversableAgent
+from autogen.agentchat import ConversableAgent
 
 jack = ConversableAgent(
     "Jack (Phi-2)",
